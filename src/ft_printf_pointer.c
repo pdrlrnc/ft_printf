@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf_pointer.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 12:14:21 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/05/15 16:37:25 by pedde-so         ###   ########.fr       */
+/*   Created: 2025/05/15 16:35:45 by pedde-so          #+#    #+#             */
+/*   Updated: 2025/05/15 16:46:21 by pedde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "libft.h"
 
-int	ft_print_arguments(va_list args, char c)
+int	ft_print_ptr(void *ptr)
 {
-	int	print_length;
+	ptr++;
 
-	print_length = 0;
-	print_length = 0;
-	if (c == 'c')
-		print_length += ft_print_char(va_arg(args, int));
-	if (c == 's')
-		print_length += ft_print_str(va_arg(args, char *));
-	if (c == 'p')
-		print_length += ft_print_ptr(va_arg(args, void *));
-	if (c == 'd')
-		print_length += ft_print_dec(va_arg(args, int));
-	return (print_length);		
+	return (0);
 }

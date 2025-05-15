@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf_decimal.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 12:14:21 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/05/15 16:37:25 by pedde-so         ###   ########.fr       */
+/*   Created: 2025/05/15 16:37:38 by pedde-so          #+#    #+#             */
+/*   Updated: 2025/05/15 16:51:32 by pedde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "libft.h"
 
-int	ft_print_arguments(va_list args, char c)
+static int	ft_num_len(long nb)
 {
-	int	print_length;
+	int	size;
 
-	print_length = 0;
-	print_length = 0;
-	if (c == 'c')
-		print_length += ft_print_char(va_arg(args, int));
-	if (c == 's')
-		print_length += ft_print_str(va_arg(args, char *));
-	if (c == 'p')
-		print_length += ft_print_ptr(va_arg(args, void *));
-	if (c == 'd')
-		print_length += ft_print_dec(va_arg(args, int));
-	return (print_length);		
+	if (nb == 0)
+		return (0);
+	size = 0;
+	if (nb < 0)
+	{
+		size++;
+		nb = -nb;
+	}
+	while (nb != 0)
+	{
+		size++;
+		nb /= 10;
+	}
+	return (size);
 }
+
+int	ft_print_dec(int nb)
+{
+	ft_putnbr_fd(nb, 1);
+	return (ft_num_len(nb));
+}
+
