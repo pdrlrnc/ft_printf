@@ -6,7 +6,7 @@
 #    By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/11 15:46:51 by pedde-so          #+#    #+#              #
-#    Updated: 2025/05/15 15:46:44 by pedde-so         ###   ########.fr        #
+#    Updated: 2025/05/15 15:58:09 by pedde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,9 @@ all:			$(NAME)
 
 $(NAME):		$(OBJ)
 				@make -s -C $(LIBFT)
-				@$(AR) $(NAME) $(OBJ) ./libft/libft.a
+				@cp ./libft/libft.a .
+				@mv libft.a $(NAME)
+				@$(AR) $(NAME) $(OBJ)
 				@echo "$(GREEN)Congratulations! You've compiled ft_printf!$(DEF_COLOUR)"
 
 clean:
