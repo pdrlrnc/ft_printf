@@ -6,7 +6,7 @@
 /*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:14:21 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/05/15 12:51:30 by pedde-so         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:18:16 by pedde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int	ft_print_arguments(va_list args, char c)
 	int	print_length;
 
 	print_length = 0;
+	print_length = 0;
 	if (c == 'c')
-		print_length += ft_print_char(v_arg(args, char));
-		
+		print_length += ft_print_char(va_arg(args, int));
+	return print_length;		
 }

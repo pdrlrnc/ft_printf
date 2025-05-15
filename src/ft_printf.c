@@ -6,7 +6,7 @@
 /*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:12:17 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/05/15 12:50:34 by pedde-so         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:14:34 by pedde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	ft_printf(const char *str, ...)
 
 	va_start(args, str);
 	i = 0;
-	print_legth = 0;
+	print_length = 0;
 	while (*(str + i))
 	{
 		if (*(str + i) == '%')
-			print_length += ft_print_argument(args, *(str + ++i));	
+			print_length += ft_print_arguments(args, *(str + ++i));	
 		else
 			print_length += ft_print_char(*(str + i));
 		i++;

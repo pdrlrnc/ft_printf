@@ -6,7 +6,7 @@
 #    By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/11 15:46:51 by pedde-so          #+#    #+#              #
-#    Updated: 2025/05/15 12:08:17 by pedde-so         ###   ########.fr        #
+#    Updated: 2025/05/15 14:45:54 by pedde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror -I
 
 %.o: %.c
-			$(CC) $(CFLAGS) $(INCLUDES) -c $(<) -o $(@)
+			@$(CC) $(CFLAGS) $(INCLUDES) -c $(<) -o $(@)
 
 NAME			= libft.a
 
@@ -48,11 +48,11 @@ bonus:			.bonus
 				@touch .bonus
 
 clean:
-				$(RM) $(OBJS) $(BONUS_OBJS)
+				@$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean:			clean
-				$(RM) $(NAME)
-				$(RM) .bonus
+				@$(RM) $(NAME)
+				@$(RM) .bonus
 
 re:				fclean $(NAME)
 
