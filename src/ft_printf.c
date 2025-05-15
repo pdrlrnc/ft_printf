@@ -1,0 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/15 12:12:17 by pedde-so          #+#    #+#             */
+/*   Updated: 2025/05/15 12:50:34 by pedde-so         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+int	ft_printf(const char *str, ...)
+{
+	va_list	args;
+	int	i;
+	int	print_length;
+
+	va_start(args, str);
+	i = 0;
+	print_legth = 0;
+	while (*(str + i))
+	{
+		if (*(str + i) == '%')
+			print_length += ft_print_argument(args, *(str + ++i));	
+		else
+			print_length += ft_print_char(*(str + i));
+		i++;
+	}
+	va_end(args);
+	return (print_length);
+}
