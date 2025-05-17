@@ -6,7 +6,7 @@
 /*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:44:14 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/05/17 11:01:18 by pedde-so         ###   ########.fr       */
+/*   Updated: 2025/05/17 14:12:40 by pedde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 /* prototypes */
 int	ft_putnbr_base_fd(int nbr, char *base, int fd);
-int		ft_is_valid_base(char *base, int base_len);
-void	ft_fill_array(char *ptr, int size);
-int	ft_print(int nb, int base, char *base_characters, int fd);
+static int		ft_is_valid_base(char *base, int base_len);
+static void	ft_fill_array(char *ptr, int size);
+static int	ft_print(unsigned int nb, int base, char *base_characters, int fd);
 /*
 int main(void)
 {
@@ -45,7 +45,24 @@ int main(void)
 }
 */
 
-int	ft_is_valid_base(char *base, int base_len)
+int	ft_putnbr_base_fd(int nbr, char *base, int fd)
+{
+	int	base_len;
+
+	if (nbr == 0)
+	{
+		write(fd, &base[0], 1);
+		return (1);
+	}
+	base_len = 0;
+	while (*(base + base_len))
+		base_len++;
+	if (!ft_is_valid_base(base, base_len))
+		return (0);
+	return (ft_print((unsigned int) nbr, base_len, base, fd));
+}
+
+static int	ft_is_valid_base(char *base, int base_len)
 {
 	int	i;
 	int	k;
@@ -69,7 +86,7 @@ int	ft_is_valid_base(char *base, int base_len)
 	return (1);
 }
 
-void	ft_fill_array(char *ptr, int size)
+static void	ft_fill_array(char *ptr, int size)
 {
 	int	i;
 
@@ -81,46 +98,24 @@ void	ft_fill_array(char *ptr, int size)
 	}
 }
 
-int	ft_print(int nb, int base, char *base_characters, int fd)
+static int	ft_print(unsigned int nb, int base, char *base_characters, int fd)
 {
 	int			i;
 	char		number[33];
-	unsigned long	long_number;
-	int			nbr_size;
+	long	long_number;
+	int	count;
 
-	nbr_size = 0;
+	count = 0;
 	long_number = nb;
 	ft_fill_array(number, 33);
-	if (long_number < 0)
-	{
-		write(fd, "-", 1);
-		long_number = -long_number;
-		nbr_size++;
-	}
 	i = 32;
 	while (long_number > 0)
 	{
 		number[i--] = base_characters[(long_number % base)];
 		long_number /= base;
-		nbr_size++;
+		count++;
 	}
-	write(fd, &number[i + 1], 32 - i);
-	return (nbr_size);
+	write(fd, &number[i + 1], count);
+	return (count);
 }
 
-int	ft_putnbr_base_fd(int nbr, char *base, int fd)
-{
-	int	base_len;
-
-	base_len = 0;
-	while (*(base + base_len))
-		base_len++;
-	if (nbr == 0)
-	{
-		write(fd, &base[0], 1);
-		return (1);
-	}
-	if (!ft_is_valid_base(base, base_len))
-		return (0);
-	return (ft_print(nbr, base_len, base, fd));
-}

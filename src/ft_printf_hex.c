@@ -15,6 +15,7 @@
 
 int	ft_print_hex(int nb, char ccase)
 {
+	nb = (unsigned int) nb;
 	if (ccase == 'l')
 		return (ft_putnbr_base_fd(nb, "0123456789abcdef", 1));
 	else

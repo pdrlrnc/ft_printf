@@ -18,7 +18,7 @@ static int	ft_num_len(long nb)
 	int	size;
 
 	if (nb == 0)
-		return (0);
+		return (1);
 	size = 0;
 	if (nb < 0)
 	{

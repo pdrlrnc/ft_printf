@@ -20,8 +20,10 @@ int	ft_print_ptr(void *ptr)
 
 	nbr_size = 0;
 	if (!ptr)
-		return (0);
-
+	{
+		ft_putstr_fd("(nil)", 1);
+		return (5);
+	}
 	ptr_address = (unsigned long) ptr;
 	ft_putstr_fd("0x", 1);
 	nbr_size = ft_putnbr_base_fd(ptr_address, "0123456789abcdef", 1); 
