@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 12:47:56 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/05/15 16:43:42 by pedde-so         ###   ########.fr       */
+/*   Created: 2025/05/17 11:24:18 by pedde-so          #+#    #+#             */
+/*   Updated: 2025/05/17 11:50:59 by pedde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "printf.h"
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-
-int	ft_printf(const char *str, ...);
-int	ft_print_char(char c);
-int	ft_print_arguments(va_list args, char c);
-int	ft_print_str(char *str);
-int	ft_print_ptr(void *ptr);
-int	ft_print_dec(int nb);
-int	ft_print_hex(int nb, char ccase);
-
-#endif
+int	ft_print_hex(int nb, char ccase)
+{
+	if (ccase == 'l')
+		return (ft_putnbr_base_fd(nb, "0123456789abcdef", 1));
+	else
+		return (ft_putnbr_base_fd(nb, "0123456789ABCDEF", 1));
+}

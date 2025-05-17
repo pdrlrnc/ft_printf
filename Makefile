@@ -6,12 +6,12 @@
 #    By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/11 15:46:51 by pedde-so          #+#    #+#              #
-#    Updated: 2025/05/15 16:45:44 by pedde-so         ###   ########.fr        #
+#    Updated: 2025/05/17 11:50:36 by pedde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_FILES		= ft_printf ft_printf_char ft_printf_string ft_printf_utils \
-				ft_printf_pointer ft_printf_decimal
+				ft_printf_pointer ft_printf_decimal ft_printf_hex
 LIBFT			= libft
 OBJ_DIR			= obj/
 INCLUDES		= ./include
