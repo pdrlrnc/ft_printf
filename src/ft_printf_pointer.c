@@ -16,7 +16,7 @@
 int	ft_print_ptr(void *ptr)
 {
 	unsigned long	ptr_address;
-	int			nbr_size;
+	int				nbr_size;
 
 	nbr_size = 0;
 	if (!ptr)
@@ -26,6 +26,6 @@ int	ft_print_ptr(void *ptr)
 	}
 	ptr_address = (unsigned long) ptr;
 	ft_putstr_fd("0x", 1);
-	nbr_size = ft_putnbr_base_fd(ptr_address, "0123456789abcdef", 1); 
+	nbr_size = ft_putnbr_base_fd(ptr_address, "0123456789abcdef", 1);
 	return (nbr_size + 2);
 }

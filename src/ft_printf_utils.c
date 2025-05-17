@@ -19,17 +19,19 @@ int	ft_print_arguments(va_list args, char c)
 	print_length = 0;
 	if (c == 'c')
 		print_length += ft_print_char(va_arg(args, int));
-	if (c == 's')
+	else if (c == 's')
 		print_length += ft_print_str(va_arg(args, char *));
-	if (c == 'p')
+	else if (c == 'p')
 		print_length += ft_print_ptr(va_arg(args, void *));
-	if (c == 'd' || c == 'i')
+	else if (c == 'd' || c == 'i')
 		print_length += ft_print_dec(va_arg(args, int));
-	if (c == 'x')
+	else if (c == 'x')
 		print_length += ft_print_hex(va_arg(args, int), 'l');
-	if (c == 'X')
+	else if (c == 'X')
 		print_length += ft_print_hex(va_arg(args, int), 'u');
-	if (c == '%')
+	else if (c == '%' || c == 'E')
 		print_length += ft_print_char('%');
-	return (print_length);		
+	else
+		print_length += (ft_print_char('%') + ft_print_char(c));
+	return (print_length);
 }

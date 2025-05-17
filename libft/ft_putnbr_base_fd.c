@@ -10,38 +10,38 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 /* prototypes */
-int	ft_putnbr_base_fd(int nbr, char *base, int fd);
-static int		ft_is_valid_base(char *base, int base_len);
+int			ft_putnbr_base_fd(int nbr, char *base, int fd);
+static int	ft_is_valid_base(char *base, int base_len);
 static void	ft_fill_array(char *ptr, int size);
 static int	ft_print(unsigned int nb, int base, char *base_characters, int fd);
 /*
-int main(void)
-{
-    ft_putnbr_base(42, "0123456789");       // Decimal: 42
-    write(1, "\n", 1);
-    ft_putnbr_base(-12, "01");                // Binário: 101010
-    write(1, "\n", 1);
-    ft_putnbr_base(42, "0123456789ABCDEF");  // Hexadecimal: 2A
-    write(1, "\n", 1);
-    ft_putnbr_base(42, "poneyvif");          // Base 8 personalizada: "v"
-    write(1, "\n", 1);
-    ft_putnbr_base(-42, "0123456789");       // Número negativo em decimal: -42
-    write(1, "\n", 1);
-    ft_putnbr_base(-42, "01");     // Número negativo em binário: -101010
-    write(1, "\n", 1);
-    ft_putnbr_base(0, "0123456789");         // Zero em decimal: 0
-    write(1, "\n", 1);
+   int main(void)
+   {
+   ft_putnbr_base(42, "0123456789");       // Decimal: 42
+   write(1, "\n", 1);
+   ft_putnbr_base(-12, "01");                // Binário: 101010
+   write(1, "\n", 1);
+   ft_putnbr_base(42, "0123456789ABCDEF");  // Hexadecimal: 2A
+   write(1, "\n", 1);
+   ft_putnbr_base(42, "poneyvif");          // Base 8 personalizada: "v"
+   write(1, "\n", 1);
+   ft_putnbr_base(-42, "0123456789");       // Número negativo em decimal: -42
+   write(1, "\n", 1);
+   ft_putnbr_base(-42, "01");     // Número negativo em binário: -101010
+   write(1, "\n", 1);
+   ft_putnbr_base(0, "0123456789");         // Zero em decimal: 0
+   write(1, "\n", 1);
 
-    // Testes de erro
-    ft_putnbr_base(42, "");                  // Base vazia
-    ft_putnbr_base(42, "1");                 // Base com um único caractere
-    ft_putnbr_base(42, "01234+6789");        // Base com caractere inválido '+'
-    ft_putnbr_base(42, "01234456789");       // Base com caractere repetido
+// Testes de erro
+ft_putnbr_base(42, "");                  // Base vazia
+ft_putnbr_base(42, "1");                 // Base com um único caractere
+ft_putnbr_base(42, "01234+6789");        // Base com caractere inválido '+'
+ft_putnbr_base(42, "01234456789");       // Base com caractere repetido
 
-    return 0;
+return 0;
 }
 */
 
@@ -102,8 +102,8 @@ static int	ft_print(unsigned int nb, int base, char *base_characters, int fd)
 {
 	int			i;
 	char		number[33];
-	long	long_number;
-	int	count;
+	long		long_number;
+	int			count;
 
 	count = 0;
 	long_number = nb;
@@ -118,4 +118,3 @@ static int	ft_print(unsigned int nb, int base, char *base_characters, int fd)
 	write(fd, &number[i + 1], count);
 	return (count);
 }
-

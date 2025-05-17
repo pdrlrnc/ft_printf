@@ -38,4 +38,3 @@ int	ft_print_dec(int nb)
 	ft_putnbr_fd(nb, 1);
 	return (ft_num_len(nb));
 }
-

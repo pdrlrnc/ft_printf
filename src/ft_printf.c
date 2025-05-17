@@ -15,16 +15,24 @@
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
-	int	i;
-	int	print_length;
+	int		i;
+	int		print_length;
 
 	va_start(args, str);
 	i = 0;
 	print_length = 0;
+	if (!str)
+		return (-1);
 	while (*(str + i))
 	{
 		if (*(str + i) == '%')
-			print_length += ft_print_arguments(args, *(str + ++i));	
+		{
+			i++;
+			if (*(str + i))
+				print_length += ft_print_arguments(args, *(str + i));
+			else
+				print_length += ft_print_arguments(NULL, 'E');
+		}
 		else
 			print_length += ft_print_char(*(str + i));
 		i++;
