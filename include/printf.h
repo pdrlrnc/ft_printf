@@ -17,11 +17,15 @@
 # include <unistd.h>
 
 int	ft_printf(const char *str, ...);
+int	ft_print_arguments(va_list args, char *str, int *i);
+int	ft_print_prefix(va_list args, char *str, int *i);
+int	ft_print_sign(va_list args, char *str, int *i);
 int	ft_print_char(char c);
-int	ft_print_arguments(va_list args, char c);
 int	ft_print_str(char *str);
 int	ft_print_ptr(void *ptr);
 int	ft_print_dec(int nb);
+int	ft_print_dec_sign(int nb, int *i);
 int	ft_print_hex(int nb, char ccase);
+int	ft_print_hex_prefix(int nb, char ccase, int *i);
 
 #endif

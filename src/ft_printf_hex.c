@@ -21,3 +21,12 @@ int	ft_print_hex(int nb, char ccase)
 	else
 		return (ft_putnbr_base_fd(nb, "0123456789ABCDEF", 1));
 }
+
+int	ft_print_hex_prefix(int nb, char ccase, int *i)
+{
+	(*i)++;
+	if (ccase == 'l')
+		return (ft_print_str("0x") + ft_print_hex(nb, ccase));
+	else
+		return (ft_print_str("0X") + ft_print_hex(nb, ccase));
+}

@@ -38,3 +38,12 @@ int	ft_print_dec(int nb)
 	ft_putnbr_fd(nb, 1);
 	return (ft_num_len(nb));
 }
+
+int	ft_print_dec_sign(int nb, int *i)
+{
+	(*i)++;
+	if (nb > 0)
+		return (ft_print_char('+') + ft_print_dec(nb));
+	else
+		return (ft_print_dec(nb));
+}
