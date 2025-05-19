@@ -42,7 +42,6 @@ int	ft_print_unsigned(int nb)
 		nb_ul = nb;
 	else
 		nb_ul = UINT_MAX + nb + 1;
-	printf("cona cona cona |%u| conaaaaa", nb_ul);
 	ft_putnbr_fd(nb_ul, 1);
 	return (ft_num_len(nb_ul));
 }
