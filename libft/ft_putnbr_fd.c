@@ -15,7 +15,7 @@
 /*prototypes*/
 static void	ft_putnbr_fd_long(long n, int fd);
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(long n, int fd)
 {
 	ft_putnbr_fd_long(n, fd);
 }

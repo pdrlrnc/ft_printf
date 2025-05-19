@@ -29,6 +29,8 @@ int	ft_print_arguments(va_list args, char c)
 		print_length += ft_print_hex(va_arg(args, int), 'l');
 	else if (c == 'X')
 		print_length += ft_print_hex(va_arg(args, int), 'u');
+	else if (c == 'u')
+		print_length += ft_print_unsigned(va_arg(args, int));
 	else if (c == '%' || c == 'E')
 		print_length += ft_print_char('%');
 	else

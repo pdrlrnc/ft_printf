@@ -16,6 +16,8 @@
 # include <stdarg.h>
 # include <unistd.h>
 
+#define UINT_MAX 4294967295
+
 int	ft_printf(const char *str, ...);
 int	ft_print_char(char c);
 int	ft_print_arguments(va_list args, char c);
@@ -23,5 +25,6 @@ int	ft_print_str(char *str);
 int	ft_print_ptr(void *ptr);
 int	ft_print_dec(int nb);
 int	ft_print_hex(int nb, char ccase);
+int	ft_print_unsigned(int nb);
 
 #endif
