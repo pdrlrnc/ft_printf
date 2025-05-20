@@ -34,9 +34,10 @@ int	ft_print_str(char *str)
 int	ft_print_str_mod(char *str, t_modifiers *modifiers)
 {
 	int	print_length;
+	int	old_precision;
 
 	print_length = 0;
-	if (!modifiers->precision)
+	if (!modifiers->dot)
 	{
 		print_length += ft_strlen(str);
 		if (modifiers->minus)
@@ -45,6 +46,18 @@ int	ft_print_str_mod(char *str, t_modifiers *modifiers)
 			print_length += ft_print_char(' ');
 		if (!modifiers->minus)
 			ft_print_str(str);
+	}
+	else
+	{
+		old_precision = modifiers->precision;
+		if (modifiers->minus)
+			while (modifiers->precision-- > 0)
+				print_length += ft_print_char(*str++);
+		while ((modifiers->width-- - old_precision) > 0)
+			print_length += ft_print_char(' ');
+		if (!modifiers->minus)
+			while (modifiers->precision-- > 0)
+				print_length += ft_print_char(*str++);			
 	}
 	return (print_length);
 }
