@@ -6,7 +6,7 @@
 #    By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/11 15:46:51 by pedde-so          #+#    #+#              #
-#    Updated: 2025/05/17 15:08:31 by pedde-so         ###   ########.fr        #
+#    Updated: 2025/05/20 19:16:26 by pedde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OBJ			= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 SRC			= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 CC			= cc
 RM			= rm -rf
-CFLAGS			= -Wall -Wextra -Werror -I$(INCLUDES)
+CFLAGS			= -g -Wall -Wextra -Werror -I$(INCLUDES)
 
 OBJF			= .cache_exists
 
@@ -68,6 +68,7 @@ re:				fclean all
 				@echo "$(WHITE)Cleaned and rebuilt everything. Good job!$(DEF_COLOUR)"
 
 main:				re	
-				@$(CC) $(CFLAGS) -g ./main/main.c -L. -lftprintf -o $(MAIN)
+				@$(CC) $(CFLAGS) ./main/main.c -L. -lftprintf -o $(MAIN)
 				@echo "$(MAGENTA)Main compiled. Get ready GDB!$(DEF_COLOUR)"
+
 .PHONY:			all clean fclean re main

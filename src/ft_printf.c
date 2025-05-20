@@ -29,9 +29,9 @@ int	ft_printf(const char *str, ...)
 		{
 			i++;
 			if (*(str + i))
-				print_length += ft_print_arguments(args, *(str + i));
+				print_length += ft_print_arguments(args,(char *)str, &i);
 			else
-				print_length += ft_print_arguments(NULL, 'E');
+				print_length += ft_print_arguments(NULL, "E", NULL);
 		}
 		else
 			print_length += ft_print_char(*(str + i));

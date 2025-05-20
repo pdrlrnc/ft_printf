@@ -11,29 +11,98 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "libft.h"
 
-int	ft_print_arguments(va_list args, char c)
+int	ft_print_arguments(va_list args, char *str, int *i)
 {
-	int	print_length;
+	t_modifiers	modifiers;
 
-	print_length = 0;
-	if (c == 'c')
-		print_length += ft_print_char(va_arg(args, int));
-	else if (c == 's')
-		print_length += ft_print_str(va_arg(args, char *));
-	else if (c == 'p')
-		print_length += ft_print_ptr(va_arg(args, void *));
-	else if (c == 'd' || c == 'i')
-		print_length += ft_print_dec(va_arg(args, int));
-	else if (c == 'x')
-		print_length += ft_print_hex(va_arg(args, int), 'l');
-	else if (c == 'X')
-		print_length += ft_print_hex(va_arg(args, int), 'u');
-	else if (c == 'u')
-		print_length += ft_print_unsigned(va_arg(args, int));
-	else if (c == '%' || c == 'E')
-		print_length += ft_print_char('%');
+	if (*(str + *i) == 'c')
+		return (ft_print_char(va_arg(args, int)));
+	else if (*(str + *i) == 's')
+		return (ft_print_str(va_arg(args, char *)));
+	else if (*(str + *i) == 'p')
+		return (ft_print_ptr(va_arg(args, void *)));
+	else if (*(str + *i) == 'd' || *(str + *i) == 'i')
+		return (ft_print_dec(va_arg(args, int)));
+	else if (*(str + *i) == 'x')
+		return (ft_print_hex(va_arg(args, int), 'l'));
+	else if (*(str + *i) == 'X')
+		return (ft_print_hex(va_arg(args, int), 'u'));
+	else if (*(str + *i) == 'u')
+		return (ft_print_unsigned(va_arg(args, int)));
+	else if (*(str + *i) == '%' || *(str + *i) == 'E')
+		return (ft_print_char('%'));
 	else
-		print_length += (ft_print_char('%') + ft_print_char(c));
-	return (print_length);
+		ft_validate_modifiers(str, i, &modifiers);
+	return ft_use_modifiers(args, &modifiers);
+}
+
+static int	ft_is_specifier(char c)
+{
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i'
+			|| c == 'x' || c == 'X' || c == 'u' || c == '%')
+		return (1);
+	return (0);
+}
+
+static int	ft_is_flag(char c)
+{
+	if (c == '-' || c == '+' || c == ' ' || c == '#' || c == '0')
+		return (1);
+	return (0);
+}
+
+int	ft_use_modifiers(va_list args, t_modifiers *modifiers)
+{
+	if (!modifiers->valid)
+		return (ft_print_char('%'));
+	else if (modifiers->specifier == 'c')
+		return (ft_print_char_mod(va_arg(args, int), modifiers));
+	else if (modifiers->specifier == 's')
+		return (ft_print_str_mod(va_arg(args, char *), modifiers));
+	return (-1);
+}
+
+t_modifiers	*ft_validate_modifiers(char *str, int *i, t_modifiers *modifiers)
+{
+	int	old_i;
+
+	*modifiers = (t_modifiers){0};
+	old_i = *i;
+	while (ft_is_flag(*(str + old_i)))
+	{
+		if (*(str + old_i) == '-')
+			modifiers->minus = 1;
+		else if (*(str + old_i) == '+')
+			modifiers->plus = 1;
+		else if (*(str + old_i) == ' ')
+			modifiers->space = 1;
+		else if (*(str + old_i) == '#')
+			modifiers->hashtag = 1;
+		else if (*(str + old_i) == '0')
+			modifiers->zero = 1;
+		old_i++;
+	}
+	if (ft_isdigit(*(str + old_i)))
+	{
+		modifiers->width = 0;
+		while (ft_isdigit(*(str + old_i)))
+			modifiers->width = modifiers->width * 10 + (*(str + old_i++) - '0');
+	}
+	if (*(str + old_i) == '.')
+	{
+		old_i++;
+		modifiers->dot = 1;
+		modifiers->precision = 0;
+		while (ft_isdigit(*(str + old_i)))
+			modifiers->precision = modifiers->precision * 10 + (*(str + old_i++) - '0');
+	}
+	if (ft_is_specifier(*(str + old_i)))
+	{
+		modifiers->specifier = *(str + old_i);
+		modifiers->valid = 1;
+		*i = old_i;
+	}
+	return (modifiers);
 }

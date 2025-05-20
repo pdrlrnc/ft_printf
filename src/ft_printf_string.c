@@ -30,3 +30,21 @@ int	ft_print_str(char *str)
 	}
 	return (i);
 }
+
+int	ft_print_str_mod(char *str, t_modifiers *modifiers)
+{
+	int	print_length;
+
+	print_length = 0;
+	if (!modifiers->precision)
+	{
+		print_length += ft_strlen(str);
+		if (modifiers->minus)
+			ft_print_str(str);
+		while (modifiers->width - print_length > 0)
+			print_length += ft_print_char(' ');
+		if (!modifiers->minus)
+			ft_print_str(str);
+	}
+	return (print_length);
+}
