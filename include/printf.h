@@ -42,6 +42,8 @@ int	ft_print_char_mod(char c, t_modifiers *modifiers);
 int	ft_print_str(char *str);
 int	ft_print_str_mod(char *str, t_modifiers *modifiers);
 int	ft_print_ptr(void *ptr);
+int	ft_validate_flags_ptr(t_modifiers *modifiers);
+int	ft_print_ptr_mod(void *ptr, t_modifiers *modifiers);
 int	ft_print_dec(int nb);
 int	ft_print_dec_mod(int nb, t_modifiers *modifiers);
 int	ft_validate_flags_dec(t_modifiers *modifiers);

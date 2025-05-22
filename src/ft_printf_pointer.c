@@ -29,3 +29,49 @@ int	ft_print_ptr(void *ptr)
 	nbr_size = ft_putnbr_base_fd(ptr_address, "0123456789abcdef", 1);
 	return (nbr_size + 2);
 }
+static int	ft_ptr_address_len(unsigned long ptr)
+{
+	int	len;
+
+	len = 0;
+	while (ptr > 0)
+	{
+		ptr /= 16;
+		len++;
+	}
+	return (len);
+}
+
+int	ft_validate_flags_ptr(t_modifiers *modifiers)
+{
+	if (modifiers->zero || modifiers->space || modifiers->plus 
+			|| modifiers->dot || modifiers->precision)
+		modifiers->valid = 0;
+	return (modifiers->valid);
+}
+
+int	ft_print_ptr_mod(void *ptr, t_modifiers *modifiers)
+{
+	unsigned long	ptr_address;
+	int				print_length;
+
+	print_length = 0;
+	ptr_address = (unsigned long) ptr;
+	print_length += ft_ptr_address_len(ptr_address) + 2;
+	if (modifiers->width <= print_length)
+		return (ft_print_ptr(ptr));
+	if (modifiers->minus)
+	{
+		ft_print_ptr(ptr);
+		while (print_length < modifiers->width)
+			print_length += ft_print_char(' ');
+	}
+	else
+	{
+		while (print_length < modifiers->width)
+			print_length += ft_print_char(' ');
+		ft_print_ptr(ptr);
+	}
+	return (print_length);
+}
+
