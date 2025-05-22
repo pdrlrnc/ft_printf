@@ -42,7 +42,9 @@ int	ft_print_str(char *str);
 int	ft_print_str_mod(char *str, t_modifiers *modifiers);
 int	ft_print_ptr(void *ptr);
 int	ft_print_dec(int nb);
+int	ft_print_dec_mod(int nb, t_modifiers *modifiers);
 int	ft_print_hex(int nb, char ccase);
 int	ft_print_unsigned(int nb);
+int	ft_print_padding(int print_length, int max, int i, char c);
 
 #endif

@@ -61,6 +61,8 @@ int	ft_use_modifiers(va_list args, t_modifiers *modifiers)
 		return (ft_print_char_mod(va_arg(args, int), modifiers));
 	else if (modifiers->specifier == 's')
 		return (ft_print_str_mod(va_arg(args, char *), modifiers));
+	else if (modifiers->specifier == 'd')
+		return (ft_print_dec_mod(va_arg(args, int), modifiers));
 	return (-1);
 }
 
