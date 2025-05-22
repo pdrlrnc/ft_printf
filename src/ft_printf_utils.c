@@ -63,7 +63,8 @@ int	ft_use_modifiers(va_list args, t_modifiers *modifiers)
 		return (ft_print_str_mod(va_arg(args, char *), modifiers));
 	else if (modifiers->specifier == 'd')
 		return (ft_print_dec_mod(va_arg(args, int), modifiers));
-	return (-1);
+	else
+		return (ft_print_char('%'));
 }
 
 t_modifiers	*ft_validate_modifiers(char *str, int *i, t_modifiers *modifiers)
@@ -104,7 +105,17 @@ t_modifiers	*ft_validate_modifiers(char *str, int *i, t_modifiers *modifiers)
 	{
 		modifiers->specifier = *(str + old_i);
 		modifiers->valid = 1;
-		*i = old_i;
+		if (ft_validate_modifiers_for_specifier(modifiers))
+			*i = old_i;
+		else
+			(*i)--;
 	}
 	return (modifiers);
+}
+
+int	ft_validate_modifiers_for_specifier(t_modifiers *modifiers)
+{
+	if (modifiers->specifier == 'd')
+		return (ft_validate_flags_dec(modifiers));
+	return (1);
 }

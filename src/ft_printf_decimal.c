@@ -39,11 +39,25 @@ int	ft_print_dec(int nb)
 	return (ft_num_size(nb));
 }
 
+int	ft_validate_flags_dec(t_modifiers *modifiers)
+{
+	if (modifiers->zero && modifiers->minus)
+		modifiers->valid = 0;
+	if (modifiers->plus && modifiers->space)
+		modifiers->valid = 0;
+	if (modifiers->hashtag)
+		modifiers->valid = 0;
+	return (modifiers->valid);
+
+}
+
 int	ft_print_dec_mod(int nb, t_modifiers *modifiers)
 {
 	int	num_size;
 	int	print_length;
 
+	if (!ft_validate_flags_dec(modifiers))
+		return (ft_use_modifiers(NULL, modifiers));;
 	num_size = ft_num_size(nb);
 	print_length = 0;
 	if (!modifiers->width && !modifiers->precision)
