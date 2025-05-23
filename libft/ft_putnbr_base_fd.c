@@ -49,11 +49,13 @@ int	ft_putnbr_base_fd(int nbr, char *base, int fd)
 {
 	int	base_len;
 
-	if (nbr == 0)
+	if (nbr == 0 && fd != -1)
 	{
 		write(fd, &base[0], 1);
 		return (1);
 	}
+	if (nbr == 0 && fd == -1)
+		return (1);
 	base_len = 0;
 	while (*(base + base_len))
 		base_len++;
@@ -115,6 +117,7 @@ static int	ft_print(unsigned int nb, int base, char *base_characters, int fd)
 		long_number /= base;
 		count++;
 	}
-	write(fd, &number[i + 1], count);
+	if (fd != -1)
+		write(fd, &number[i + 1], count);
 	return (count);
 }

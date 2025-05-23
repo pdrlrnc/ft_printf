@@ -65,6 +65,10 @@ int	ft_use_modifiers(va_list args, t_modifiers *modifiers)
 		return (ft_print_dec_mod(va_arg(args, int), modifiers));
 	else if (modifiers->specifier == 'p')
 		return (ft_print_ptr_mod(va_arg(args, void *), modifiers));
+	else if (modifiers->specifier == 'x')
+		return (ft_print_hex_mod(va_arg(args, int), 'l', modifiers));
+	else if (modifiers->specifier == 'X')
+		return (ft_print_hex_mod(va_arg(args, int), 'u', modifiers));
 	else
 		return (ft_print_char('%'));
 }
@@ -121,5 +125,7 @@ int	ft_validate_modifiers_for_specifier(t_modifiers *modifiers)
 		return (ft_validate_flags_dec(modifiers));
 	if (modifiers->specifier == 'p')
 		return (ft_validate_flags_ptr(modifiers));
+	if (modifiers->specifier == 'x' || modifiers->specifier == 'X')
+		return (ft_validate_flags_hex(modifiers));
 	return (1);
 }

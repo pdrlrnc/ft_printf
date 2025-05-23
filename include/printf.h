@@ -48,6 +48,13 @@ int	ft_print_dec(int nb);
 int	ft_print_dec_mod(int nb, t_modifiers *modifiers);
 int	ft_validate_flags_dec(t_modifiers *modifiers);
 int	ft_print_hex(int nb, char ccase);
+int	ft_print_hex_mod_precision(int nb, char ccase, t_modifiers *modifiers, int num_len);
+int	ft_print_hex_mod_width(int nb, char ccase, t_modifiers *modifiers, int num_len);
+int	ft_print_hex_mod(int nb, char ccase, t_modifiers *modifiers);
+int	ft_print_hex_mod_width_and_precision(int nb, char ccase, t_modifiers *modifiers, int num_len);
+int	ft_print_hasthag_hex(char ccase);
+int	ft_print_padding_hex(int i, int max, char c);
+int	ft_validate_flags_hex(t_modifiers *modifiers);
 int	ft_print_unsigned(int nb);
 int	ft_print_padding(int print_length, int max, int i, char c);
 
