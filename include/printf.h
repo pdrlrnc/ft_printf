@@ -37,6 +37,8 @@ int	ft_print_arguments(va_list args, char *str, int *i);
 int	ft_use_modifiers(va_list args, t_modifiers *modifiers);
 t_modifiers	*ft_validate_modifiers(char *str, int *i, t_modifiers *modifiers);
 int	ft_validate_modifiers_for_specifier(t_modifiers *modifiers);
+int	ft_is_flag(char c);
+int	ft_is_specifier(char c);
 int	ft_print_char(char c);
 int	ft_validate_flags_char(t_modifiers *modifiers);
 int	ft_print_char_mod(char c, t_modifiers *modifiers);
