@@ -39,7 +39,7 @@ int	ft_print_dec(int nb)
 	return (ft_num_size(nb));
 }
 
-int	ft_validate_flags_dec(t_modifiers *modifiers)
+int	ft_validate_flags_dec(t_mdf *modifiers)
 {
 	if (modifiers->zero && modifiers->minus)
 		modifiers->valid = 0;
@@ -51,7 +51,7 @@ int	ft_validate_flags_dec(t_modifiers *modifiers)
 
 }
 
-int	ft_print_dec_mod(int nb, t_modifiers *modifiers)
+int	ft_print_dec_mod(int nb, t_mdf *modifiers)
 {
 	int	num_size;
 	int	print_length;

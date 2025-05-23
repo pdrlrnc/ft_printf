@@ -15,7 +15,7 @@
 
 int	ft_print_arguments(va_list args, char *str, int *i)
 {
-	t_modifiers	modifiers;
+	t_mdf	modifiers;
 
 	if (*(str + *i) == 'c')
 		return (ft_print_char(va_arg(args, int)));
@@ -34,7 +34,7 @@ int	ft_print_arguments(va_list args, char *str, int *i)
 	else if (*(str + *i) == '%' || *(str + *i) == 'E')
 		return (ft_print_char('%'));
 	else
-		ft_validate_modifiers(str, i, &modifiers);
+		ft_validate_mdf(str, i, &modifiers);
 	return (ft_use_modifiers(args, &modifiers));
 }
 
@@ -54,7 +54,7 @@ int	ft_is_flag(char c)
 	return (0);
 }
 
-int	ft_use_modifiers(va_list args, t_modifiers *modifiers)
+int	ft_use_modifiers(va_list args, t_mdf *modifiers)
 {
 	if (!modifiers->valid)
 		return (ft_print_char('%'));
@@ -76,7 +76,7 @@ int	ft_use_modifiers(va_list args, t_modifiers *modifiers)
 		return (ft_print_char('%'));
 }
 
-int	ft_validate_modifiers_for_specifier(t_modifiers *modifiers)
+int	ft_validate_mdf_for_specifier(t_mdf *modifiers)
 {
 	if (modifiers->specifier == 'c')
 		return (ft_validate_flags_char(modifiers));

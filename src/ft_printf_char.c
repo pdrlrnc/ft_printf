@@ -19,7 +19,7 @@ int	ft_print_char(char c)
 	return (1);
 }
 
-int	ft_validate_flags_char(t_modifiers *modifiers)
+int	ft_validate_flags_char(t_mdf *modifiers)
 {
 	if (modifiers->zero || modifiers->hashtag || modifiers->space)
 		modifiers->valid = 0;
@@ -28,7 +28,7 @@ int	ft_validate_flags_char(t_modifiers *modifiers)
 	return (modifiers->valid);
 }
 
-int	ft_print_char_mod(char c, t_modifiers *modifiers)
+int	ft_print_char_mod(char c, t_mdf *modifiers)
 {
 	int	print_length;
 

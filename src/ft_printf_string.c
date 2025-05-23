@@ -31,7 +31,7 @@ int	ft_print_str(char *str)
 	return (i);
 }
 
-int	ft_print_str_mod(char *str, t_modifiers *modifiers)
+int	ft_print_str_mod(char *str, t_mdf *modifiers)
 {
 	int	print_length;
 	int	old_precision;

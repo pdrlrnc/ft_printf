@@ -22,7 +22,7 @@ int	ft_print_hex(int nb, char ccase)
 		return (ft_putnbr_base_fd(nb, "0123456789ABCDEF", 1));
 }
 
-int	ft_validate_flags_hex(t_modifiers *modifiers)
+int	ft_validate_flags_hex(t_mdf *modifiers)
 {
 	if (modifiers->space || modifiers->plus)
 		modifiers->valid = 0;
@@ -33,7 +33,7 @@ int	ft_validate_flags_hex(t_modifiers *modifiers)
 	return (modifiers->valid);
 }
 
-int	ft_print_hex_mod(int nb, char ccase, t_modifiers *modifiers)
+int	ft_print_hex_mod(int nb, char ccase, t_mdf *modifiers)
 {
 	int	print_length;
 	char	*base;
@@ -56,7 +56,7 @@ int	ft_print_hex_mod(int nb, char ccase, t_modifiers *modifiers)
 	return (print_length);
 }
 
-int	ft_print_hex_mod_width(int nb, char ccase, t_modifiers *modifiers, int num_len)
+int	ft_print_hex_mod_width(int nb, char ccase, t_mdf *modifiers, int num_len)
 {
 	int	print_length;
 
@@ -82,7 +82,7 @@ int	ft_print_hex_mod_width(int nb, char ccase, t_modifiers *modifiers, int num_l
 	return (print_length);
 }
 
-int	ft_print_hex_mod_precision(int nb, char ccase, t_modifiers *modifiers, int num_len)
+int	ft_print_hex_mod_precision(int nb, char ccase, t_mdf *modifiers, int num_len)
 {
 	int	print_length;
 
@@ -94,7 +94,7 @@ int	ft_print_hex_mod_precision(int nb, char ccase, t_modifiers *modifiers, int n
 	return (print_length);
 }
 
-int	ft_print_hex_mod_width_and_precision(int nb, char ccase, t_modifiers *modifiers, int num_len)
+int	ft_print_hex_mod_width_and_precision(int nb, char ccase, t_mdf *modifiers, int num_len)
 {
 	int	print_length;
 

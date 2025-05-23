@@ -46,7 +46,7 @@ int	ft_print_unsigned(int nb)
 	return (ft_num_len(nb_ul));
 }
 
-int	ft_validate_flags_uns(t_modifiers *modifiers)
+int	ft_validate_flags_uns(t_mdf *modifiers)
 {
 	if (modifiers->plus || modifiers->space || modifiers->hashtag)
 		modifiers->valid = 0;
@@ -55,7 +55,7 @@ int	ft_validate_flags_uns(t_modifiers *modifiers)
 	return (modifiers->valid);
 }
 
-int	ft_print_uns_mod(int nb, t_modifiers *modifiers)
+int	ft_print_uns_mod(int nb, t_mdf *modifiers)
 {
 	int	print_length;
 	unsigned int	nb_ul;
@@ -87,7 +87,7 @@ int	ft_print_uns_mod(int nb, t_modifiers *modifiers)
 	return (print_length);
 }
 
-int	ft_print_uns_mod_width_and_precision(unsigned int nb_ul, t_modifiers *modifiers)
+int	ft_print_uns_mod_width_and_precision(unsigned int nb_ul, t_mdf *modifiers)
 {
 	int	print_length;
 	int	num_len;

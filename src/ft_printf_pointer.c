@@ -42,7 +42,7 @@ static int	ft_ptr_address_len(unsigned long ptr)
 	return (len);
 }
 
-int	ft_validate_flags_ptr(t_modifiers *modifiers)
+int	ft_validate_flags_ptr(t_mdf *modifiers)
 {
 	if (modifiers->zero || modifiers->space || modifiers->plus 
 			|| modifiers->dot || modifiers->precision)
@@ -50,7 +50,7 @@ int	ft_validate_flags_ptr(t_modifiers *modifiers)
 	return (modifiers->valid);
 }
 
-int	ft_print_ptr_mod(void *ptr, t_modifiers *modifiers)
+int	ft_print_ptr_mod(void *ptr, t_mdf *modifiers)
 {
 	unsigned long	ptr_address;
 	int				print_length;

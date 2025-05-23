@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_validate_modifiers.c                            :+:      :+:    :+:   */
+/*   ft_validate_mdf.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,59 +13,58 @@
 #include "printf.h"
 #include "libft.h"
 
-static void	ft_read_flags(char *str, int *old_i, t_modifiers *modifiers)
+static void	ft_read_flags(char *str, int *old_i, t_mdf *mdf)
 {
 	while (ft_is_flag(*(str + *old_i)))
 	{
 		if (*(str + *old_i) == '-')
-			modifiers->minus = 1;
+			mdf->minus = 1;
 		else if (*(str + *old_i) == '+')
-			modifiers->plus = 1;
+			mdf->plus = 1;
 		else if (*(str + *old_i) == ' ')
-			modifiers->space = 1;
+			mdf->space = 1;
 		else if (*(str + *old_i) == '#')
-			modifiers->hashtag = 1;
+			mdf->hashtag = 1;
 		else if (*(str + *old_i) == '0')
-			modifiers->zero = 1;
+			mdf->zero = 1;
 		(*old_i)++;
 	}
 }
 
-static t_modifiers	*ft_read_specifier(char *str, int *old_i, t_modifiers *modifiers, int *i)
+static t_mdf	*ft_read_specifier(char *str, int *old_i, t_mdf *mdf, int *i)
 {
 	if (ft_is_specifier(*(str + *old_i)))
 	{
-		modifiers->specifier = *(str + *old_i);
-		modifiers->valid = 1;
-		if (ft_validate_modifiers_for_specifier(modifiers))
+		mdf->specifier = *(str + *old_i);
+		mdf->valid = 1;
+		if (ft_validate_mdf_for_specifier(mdf))
 			*i = *old_i;
 		else
 			(*i)--;
 	}
-	return (modifiers);
+	return (mdf);
 }
 
-t_modifiers	*ft_validate_modifiers(char *str, int *i, t_modifiers *modifiers)
+t_mdf	*ft_validate_mdf(char *str, int *i, t_mdf *mdf)
 {
 	int	old_i;
 
-	*modifiers = (t_modifiers){0};
+	*mdf = (t_mdf){0};
 	old_i = *i;
-	ft_read_flags(str, &old_i, modifiers);
+	ft_read_flags(str, &old_i, mdf);
 	if (ft_isdigit(*(str + old_i)))
 	{
-		modifiers->width = 0;
+		mdf->width = 0;
 		while (ft_isdigit(*(str + old_i)))
-			modifiers->width = modifiers->width * 10 + (*(str + old_i++) - '0');
+			mdf->width = mdf->width * 10 + (*(str + old_i++) - '0');
 	}
 	if (*(str + old_i) == '.')
 	{
 		old_i++;
-		modifiers->dot = 1;
-		modifiers->precision = 0;
+		mdf->dot = 1;
+		mdf->precision = 0;
 		while (ft_isdigit(*(str + old_i)))
-			modifiers->precision = modifiers->precision * 10 + (*(str + old_i++) - '0');
+			mdf->precision = mdf->precision * 10 + (*(str + old_i++) - '0');
 	}
-	return (ft_read_specifier(str, &old_i, modifiers, i));
+	return (ft_read_specifier(str, &old_i, mdf, i));
 }
-
