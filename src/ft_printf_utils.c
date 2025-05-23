@@ -123,6 +123,8 @@ t_modifiers	*ft_validate_modifiers(char *str, int *i, t_modifiers *modifiers)
 
 int	ft_validate_modifiers_for_specifier(t_modifiers *modifiers)
 {
+	if (modifiers->specifier == 'c')
+		return (ft_validate_flags_char(modifiers));
 	if (modifiers->specifier == 'd')
 		return (ft_validate_flags_dec(modifiers));
 	if (modifiers->specifier == 'p')
