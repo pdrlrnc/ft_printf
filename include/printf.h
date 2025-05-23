@@ -56,6 +56,10 @@ int	ft_print_hasthag_hex(char ccase);
 int	ft_print_padding_hex(int i, int max, char c);
 int	ft_validate_flags_hex(t_modifiers *modifiers);
 int	ft_print_unsigned(int nb);
+int	ft_validate_flags_uns(t_modifiers *modifiers);
+int	ft_print_uns_mod(int nb, t_modifiers *modifiers);
+int	ft_print_uns_mod_width_and_precision(unsigned int nb_ul, t_modifiers *modifiers);
+int	ft_add_padding_uns(int i, int max, char c);
 int	ft_print_padding(int print_length, int max, int i, char c);
 
 #endif

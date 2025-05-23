@@ -65,11 +65,13 @@ int	ft_print_hex_mod_width(int nb, char ccase, t_modifiers *modifiers, int num_l
 	{
 		if (modifiers->hashtag && nb != 0)
 			num_len += 2;
+		if (modifiers->hashtag && nb != 0 && modifiers->zero)
+			print_length += ft_print_hasthag_hex(ccase);
 		if (modifiers->zero)
 			print_length += ft_print_padding_hex(num_len, modifiers->width, '0');
 		else if (!modifiers->minus)
 			print_length += ft_print_padding_hex(num_len, modifiers->width, ' ');
-		if (modifiers->hashtag && nb != 0)
+		if (modifiers->hashtag && nb != 0 && !modifiers->zero)
 			print_length += ft_print_hasthag_hex(ccase);
 		print_length += ft_print_hex(nb, ccase);
 		if (modifiers->minus)
@@ -118,7 +120,7 @@ int	ft_print_hasthag_hex(char ccase)
 	int	print_length;
 
 	print_length = 0;
-	if (ccase == 'u')
+	if (ccase == 'l')
 		print_length += ft_print_str("0x");
 	else
 		print_length += ft_print_str("0X");
