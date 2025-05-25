@@ -51,6 +51,97 @@ int	ft_validate_flags_dec(t_mdf *modifiers)
 
 }
 
+static int	ft_handle_plain_dec(int nb, t_mdf *modifiers)
+{
+	int	print_length;
+
+	print_length = 0;
+	if (nb <= 0)
+		print_length += ft_print_dec(nb);
+	else if (modifiers->plus)
+		print_length += (ft_print_char('+') + ft_print_dec(nb));
+	else if (modifiers->space)
+		print_length += (ft_print_char(' ') + ft_print_dec(nb));
+	else
+		print_length += ft_print_dec(nb);
+	return (print_length);
+}
+
+static int	ft_handle_width_only_dec(int nb, t_mdf *modifiers)
+{
+	int	print_length;
+	int	num_size;
+
+	num_size = ft_num_size(nb);
+	print_length = 0;
+	if (modifiers->width <= num_size)
+		return (modifiers->width = 0, ft_print_dec_mod(nb, modifiers));
+	else if (modifiers->minus)
+	{
+		print_length += ft_handle_sign_dec(nb, modifiers);
+		print_length += ft_print_dec(nb);
+		print_length = ft_print_padding_dec(print_length, print_length, modifiers->width, ' ');
+	} 
+	else
+	{
+		if (modifiers->zero)
+		{
+			if (nb > 0 && (modifiers->plus || modifiers->space))
+				num_size++;
+			print_length += ft_handle_sign_dec(nb, modifiers);
+			print_length += ft_handle_negative(&nb, NULL);
+			print_length += ft_print_padding_dec(print_length, modifiers->width, num_size , '0');
+			print_length += ft_print_dec(nb);
+		} 
+		else
+		{
+			if ((modifiers->plus || modifiers->space) && nb > 0)
+				num_size++;
+			print_length = ft_print_padding_dec(print_length, modifiers->width, num_size ,' ');
+			print_length += ft_handle_sign_dec(nb, modifiers);
+			print_length += ft_print_dec(nb);
+		}
+	}
+	return (print_length);
+}
+
+static int	ft_handle_precision(int nb, t_mdf *modifiers)
+{
+	int	print_length;
+	int	num_size;
+
+	num_size = ft_num_size(nb);
+	print_length = 0;
+	if (modifiers->width <= modifiers->precision)
+	{
+		print_length += ft_handle_sign_dec(nb, modifiers);
+		print_length += ft_handle_negative(&nb, &num_size);
+		ft_print_padding_dec(print_length, modifiers->precision, num_size, '0');
+		print_length += ft_print_dec(nb);
+	}
+	else if (modifiers->minus)
+	{	
+		print_length += ft_handle_sign_dec(nb, modifiers);
+		print_length += ft_handle_negative(&nb, &num_size);
+		ft_print_padding_dec(print_length, modifiers->precision, num_size, '0');
+		print_length += ft_print_dec(nb);
+		ft_print_padding_dec(print_length, modifiers->width - 1, print_length, ' ');
+	}
+	else
+	{
+		if ((modifiers->plus && nb > 0) || nb < 0)
+			ft_print_padding_dec(print_length, modifiers->width, modifiers->precision + 1, ' ');
+		else
+			ft_print_padding_dec(print_length, modifiers->width, modifiers->precision, ' ');
+		if ((modifiers->plus && nb > 0))
+			print_length += ft_print_char('+');
+		print_length += ft_handle_negative(&nb, &num_size);
+		ft_print_padding_dec(print_length, modifiers->precision, num_size, '0');
+		print_length += ft_print_dec(nb);
+	}
+	return (print_length);
+}
+
 int	ft_print_dec_mod(int nb, t_mdf *modifiers)
 {
 	int	num_size;
@@ -61,134 +152,10 @@ int	ft_print_dec_mod(int nb, t_mdf *modifiers)
 	num_size = ft_num_size(nb);
 	print_length = 0;
 	if (!modifiers->width && !modifiers->precision)
-	{
-		if (nb <= 0)
-			print_length += ft_print_dec(nb);
-		else if (modifiers->plus)
-			print_length += (ft_print_char('+') + ft_print_dec(nb));
-		else if (modifiers->space)
-			print_length += (ft_print_char(' ') + ft_print_dec(nb));
-		else
-			print_length += ft_print_dec(nb);
-	}
+		return (ft_handle_plain_dec(nb, modifiers));
 	else if (modifiers->width && !modifiers->precision)
-	{
-		if (modifiers->width <= num_size)
-			return (modifiers->width = 0, ft_print_dec_mod(nb, modifiers));
-		else if (modifiers->minus)
-		{
-			if (modifiers->plus && nb > 0)
-				print_length += ft_print_char('+');
-			if (modifiers->space && nb > 0)
-				print_length += ft_print_char(' ');
-			print_length += ft_print_dec(nb);
-			print_length = ft_print_padding(print_length, print_length, modifiers->width, ' ');
-		} 
-		else
-		{
-			if (modifiers->zero)
-			{
-				if (modifiers->plus && nb > 0)
-				{
-					print_length += ft_print_char('+');
-					num_size++;
-				}
-				if (modifiers->space && nb > 0)
-				{
-					print_length += ft_print_char(' ');
-					num_size++;
-				}
-				else if (nb < 0)
-				{
-					print_length += ft_print_char('-');
-					nb = nb * (-1);
-				}
-				print_length = ft_print_padding(print_length, modifiers->width, num_size , '0');
-				print_length += ft_print_dec(nb);
-			} 
-			else
-			{
-				if ((modifiers->plus || modifiers->space) && nb > 0)
-					num_size++;
-				print_length = ft_print_padding(print_length, modifiers->width, num_size ,' ');
-				if (modifiers->plus && nb > 0)
-					print_length += ft_print_char('+');
-				if (modifiers->space && nb > 0)
-					print_length += ft_print_char(' ');
-				print_length += ft_print_dec(nb);
-			}
-		}
-	}
-	else 
-	{
-		if (modifiers->width <= modifiers->precision)
-		{
-			if (modifiers->plus && nb > 0)
-			{
-				print_length += ft_print_char('+');
-			}
-			if (modifiers->space && nb > 0)
-			{
-				print_length += ft_print_char(' ');
-			}
-			if (nb < 0)
-			{
-				print_length += ft_print_char('-');
-				num_size--;
-				nb = nb * (-1);
-			}
-			while (num_size < modifiers->precision--)
-				print_length += ft_print_char('0');
-			print_length += ft_print_dec(nb);
-		}
-		else if (modifiers->minus)
-		{
-			if (modifiers->plus && nb > 0)
-				print_length += ft_print_char('+');
-			else if (modifiers->space && nb >= 0)
-				print_length += ft_print_char(' ');
-			else if (nb < 0)
-			{
-				print_length += ft_print_char('-');
-				nb *= -1;
-				num_size--;
-			}
-			while (num_size < modifiers->precision--)
-				print_length += ft_print_char('0');
-			print_length += ft_print_dec(nb);
-			while (print_length < modifiers->width)
-				print_length += ft_print_char(' ');
-		}
-		else
-		{
-			if ((modifiers->plus && nb > 0) || nb < 0)
-				while (modifiers->precision + 1 < modifiers->width--)
-					print_length += ft_print_char(' ');
-			else
-				while (modifiers->precision < modifiers-> width--)
-					print_length += ft_print_char(' ');
-			if ((modifiers->plus && nb > 0))
-				print_length += ft_print_char('+');
-			if (nb < 0)
-			{
-				print_length += ft_print_char('-');
-				num_size--;
-				nb = nb * (-1);
-			}
-			while (num_size++ < modifiers->precision)
-				print_length += ft_print_char('0');
-			print_length += ft_print_dec(nb);
-		}
-	}
-	return (print_length);
-}
-
-int	ft_print_padding(int print_length, int max, int i, char c)
-{
-	while (i < max)
-	{
-		print_length += ft_print_char(c);
-		i++;
-	}
+		return (ft_handle_width_only_dec(nb, modifiers));
+	else
+		return (ft_handle_precision(nb, modifiers));
 	return (print_length);
 }
