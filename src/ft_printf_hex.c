@@ -22,118 +22,74 @@ int	ft_print_hex(int nb, char ccase)
 		return (ft_putnbr_base_fd(nb, "0123456789ABCDEF", 1));
 }
 
-int	ft_validate_flags_hex(t_mdf *modifiers)
+int	ft_validate_flags_hex(t_mdf *mdf)
 {
-	if (modifiers->space || modifiers->plus)
-		modifiers->valid = 0;
-	if (modifiers->zero && modifiers->minus)
-		modifiers->valid = 0;
-	if (modifiers->zero && modifiers->dot)
-		modifiers->valid = 0;
-	return (modifiers->valid);
+	if (mdf->space || mdf->plus)
+		mdf->valid = 0;
+	if (mdf->zero && mdf->minus)
+		mdf->valid = 0;
+	if (mdf->zero && mdf->dot)
+		mdf->valid = 0;
+	return (mdf->valid);
 }
 
-int	ft_print_hex_mod(int nb, char ccase, t_mdf *modifiers)
+int	ft_print_hex_mod(int nb, char ccase, t_mdf *mdf)
 {
-	int		print_length;
+	int		p_l;
 	char	*base;
 
 	if (ccase == 'u')
 		base = "0123456789abcdef";
 	else
 		base = "0123456789ABCDEF";
-	print_length = 0;
-	if (!modifiers->width && !modifiers->precision)
+	p_l = 0;
+	if (!mdf->width && !mdf->precision)
 	{
-		if (modifiers->hashtag && nb != 0)
-			print_length += ft_print_hasthag_hex(ccase);
-		print_length += ft_print_hex(nb, ccase);
+		if (mdf->hashtag && nb != 0)
+			p_l += ft_print_hasthag_hex(ccase);
+		p_l += ft_print_hex(nb, ccase);
 	}
-	else if (modifiers->width)
-		return (ft_print_hex_mod_width(nb, ccase, modifiers, ft_putnbr_base_fd(nb, base, -1)));
+	else if (mdf->width)
+		return (ft_pr_hex_wdh(nb, ccase, mdf, ft_putnbr_base_fd(nb, base, -1)));
 	else
-		return (ft_print_hex_mod_precision(nb, ccase, modifiers, ft_putnbr_base_fd(nb, base, -1)));
-	return (print_length);
+		return (ft_pr_hex_pr(nb, ccase, mdf, ft_putnbr_base_fd(nb, base, -1)));
+	return (p_l);
 }
 
-int	ft_print_hex_mod_width(int nb, char ccase, t_mdf *modifiers, int num_len)
+int	ft_pr_hex_wdh(int nb, char ccase, t_mdf *mdf, int num_len)
 {
-	int	print_length;
+	int	p_l;
 
-	print_length = 0;
-	if (!modifiers->precision)
+	p_l = 0;
+	if (!mdf->precision)
 	{
-		if (modifiers->hashtag && nb != 0)
+		if (mdf->hashtag && nb != 0)
 			num_len += 2;
-		if (modifiers->hashtag && nb != 0 && modifiers->zero)
-			print_length += ft_print_hasthag_hex(ccase);
-		if (modifiers->zero)
-			print_length += ft_print_padding_hex(num_len, modifiers->width, '0');
-		else if (!modifiers->minus)
-			print_length += ft_print_padding_hex(num_len, modifiers->width, ' ');
-		if (modifiers->hashtag && nb != 0 && !modifiers->zero)
-			print_length += ft_print_hasthag_hex(ccase);
-		print_length += ft_print_hex(nb, ccase);
-		if (modifiers->minus)
-			print_length += ft_print_padding_hex(num_len, modifiers->width, ' ');
+		if (mdf->hashtag && nb != 0 && mdf->zero)
+			p_l += ft_print_hasthag_hex(ccase);
+		if (mdf->zero)
+			p_l += ft_print_padding_hex(num_len, mdf->width, '0');
+		else if (!mdf->minus)
+			p_l += ft_print_padding_hex(num_len, mdf->width, ' ');
+		if (mdf->hashtag && nb != 0 && !mdf->zero)
+			p_l += ft_print_hasthag_hex(ccase);
+		p_l += ft_print_hex(nb, ccase);
+		if (mdf->minus)
+			p_l += ft_print_padding_hex(num_len, mdf->width, ' ');
 	}
 	else
-		return (ft_print_hex_mod_width_and_precision(nb, ccase, modifiers, num_len));
-	return (print_length);
+		return (ft_pr_hex_wdh_pr(nb, ccase, mdf, num_len));
+	return (p_l);
 }
 
-int	ft_print_hex_mod_precision(int nb, char ccase, t_mdf *modifiers, int num_len)
+int	ft_pr_hex_pr(int nb, char ccase, t_mdf *mdf, int num_len)
 {
-	int	print_length;
+	int	p_l;
 
-	print_length = 0;
-	if (modifiers->hashtag)
-		print_length += ft_print_hasthag_hex(ccase);
-	print_length += ft_print_padding_hex(num_len, modifiers->precision, '0');
-	print_length += ft_print_hex(nb, ccase);
-	return (print_length);
-}
-
-int	ft_print_hex_mod_width_and_precision(int nb, char ccase, t_mdf *modifiers, int num_len)
-{
-	int	print_length;
-
-	print_length = 0;
-	if (modifiers->hashtag && nb != 0 && !modifiers->minus)
-		print_length += ft_print_padding_hex(modifiers->precision + 2, modifiers->width, ' ');
-	else if (!modifiers->hashtag && !modifiers->minus)
-		print_length += ft_print_padding_hex(modifiers->precision, modifiers->width, ' ');
-	if (modifiers->hashtag)
-		print_length += ft_print_hasthag_hex(ccase);
-	print_length += ft_print_padding_hex(num_len, modifiers->precision, '0');
-	print_length += ft_print_hex(nb, ccase);
-	if (modifiers->hashtag && nb != 0 && modifiers->minus)
-		print_length += ft_print_padding_hex(modifiers->precision + 2, modifiers->width, ' ');
-	else if (!modifiers->hashtag && modifiers->minus)
-		print_length += ft_print_padding_hex(modifiers->precision, modifiers->width, ' ');
-	return (print_length);
-
-}
-
-int	ft_print_hasthag_hex(char ccase)
-{
-	int	print_length;
-
-	print_length = 0;
-	if (ccase == 'l')
-		print_length += ft_print_str("0x");
-	else
-		print_length += ft_print_str("0X");
-	return (print_length);
-
-}
-
-int	ft_print_padding_hex(int i, int max, char c)
-{
-	int	print_length;
-
-	print_length = 0;
-	while (i++ < max)
-		print_length += ft_print_char(c);
-	return (print_length);
+	p_l = 0;
+	if (mdf->hashtag)
+		p_l += ft_print_hasthag_hex(ccase);
+	p_l += ft_print_padding_hex(num_len, mdf->precision, '0');
+	p_l += ft_print_hex(nb, ccase);
+	return (p_l);
 }

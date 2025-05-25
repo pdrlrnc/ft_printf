@@ -53,6 +53,26 @@ static int	ft_print_uns_pr(unsigned int nb_ul, t_mdf *mdf, int pr_l)
 	return (pr_l);
 }
 
+static int	ft_print_uns_mod_width_and_precision(unsigned int nb_ul, t_mdf *mdf)
+{
+	int	pr_l;
+	int	num_len;
+
+	pr_l = 0;
+	num_len = ft_num_len(nb_ul);
+	if (!mdf->minus && mdf->precision >= num_len)
+		pr_l += ft_add_p_u(mdf->precision, mdf->width, ' ');
+	if (!mdf->minus && mdf->precision < num_len)
+		pr_l += ft_add_p_u(mdf->precision, mdf->width, ' ');
+	pr_l += ft_add_p_u(mdf->precision, mdf->width, '0');
+	pr_l += ft_print_unsigned(nb_ul);
+	if (mdf->minus && mdf->precision >= num_len)
+		pr_l += ft_add_p_u(mdf->precision, mdf->width, ' ');
+	if (mdf->minus && mdf->precision < num_len)
+		pr_l += ft_add_p_u(mdf->precision, mdf->width, ' ');
+	return (pr_l);
+}
+
 int	ft_print_uns_mod(int nb, t_mdf *mdf)
 {
 	int				pr_l;
@@ -79,25 +99,5 @@ int	ft_print_uns_mod(int nb, t_mdf *mdf)
 		return (ft_print_uns_pr(nb_ul, mdf, pr_l));
 	else
 		return (ft_print_uns_mod_width_and_precision(nb_ul, mdf));
-	return (pr_l);
-}
-
-int	ft_print_uns_mod_width_and_precision(unsigned int nb_ul, t_mdf *mdf)
-{
-	int	pr_l;
-	int	num_len;
-
-	pr_l = 0;
-	num_len = ft_num_len(nb_ul);
-	if (!mdf->minus && mdf->precision >= num_len)
-		pr_l += ft_add_p_u(mdf->precision, mdf->width, ' ');
-	if (!mdf->minus && mdf->precision < num_len)
-		pr_l += ft_add_p_u(mdf->precision, mdf->width, ' ');
-	pr_l += ft_add_p_u(mdf->precision, mdf->width, '0');
-	pr_l += ft_print_unsigned(nb_ul);
-	if (mdf->minus && mdf->precision >= num_len)
-		pr_l += ft_add_p_u(mdf->precision, mdf->width, ' ');
-	if (mdf->minus && mdf->precision < num_len)
-		pr_l += ft_add_p_u(mdf->precision, mdf->width, ' ');
 	return (pr_l);
 }

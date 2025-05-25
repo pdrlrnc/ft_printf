@@ -13,7 +13,7 @@
 SRC_FILES		= ft_printf ft_printf_char ft_printf_string ft_printf_utils \
 				ft_printf_pointer ft_printf_decimal ft_printf_hex \
 				ft_printf_unsigned ft_validate_modifiers ft_printf_decimal_utils \
-				ft_printf_decimal_main ft_printf_unsigned_utils
+				ft_printf_decimal_main ft_printf_unsigned_utils ft_printf_hex_utils.c
 LIBFT			= libft
 OBJ_DIR			= obj/
 INCLUDES		= ./include
