@@ -43,7 +43,7 @@ static int	ft_print_with_dot(char *str, t_mdf *modifiers, int *old_precision)
 	while ((modifiers->width-- - *old_precision) > 0)
 		print_length += ft_print_char(' ');
 	if (!modifiers->minus)
-		while (modifiers->precision-- > 0)
+		while ((modifiers->precision-- > 0 && *str))
 			print_length += ft_print_char(*str++);
 	return (print_length);
 }
