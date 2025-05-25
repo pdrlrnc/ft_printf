@@ -52,6 +52,8 @@ int	ft_print_dec(int nb);
 int	ft_print_dec_mod(int nb, t_mdf *modifiers);
 int	ft_validate_flags_dec(t_mdf *modifiers);
 int	ft_handle_sign_dec(int nb, t_mdf *modifiers);
+int	ft_handle_plain_dec(int nb, t_mdf *mdf);
+int	ft_num_size_nb(long nb);
 int	ft_handle_negative(int *nb, int *num_size);
 int	ft_print_hex(int nb, char ccase);
 int	ft_print_hex_mod_precision(int nb, char ccase, t_mdf *modifiers, int num_len);
@@ -65,7 +67,7 @@ int	ft_print_unsigned(int nb);
 int	ft_validate_flags_uns(t_mdf *modifiers);
 int	ft_print_uns_mod(int nb, t_mdf *modifiers);
 int	ft_print_uns_mod_width_and_precision(unsigned int nb_ul, t_mdf *modifiers);
-int	ft_add_padding_uns(int i, int max, char c);
-int	ft_print_padding_dec(int print_length, int max, int i, char c);
+int	ft_add_p_u(int i, int max, char c);
+int	ft_print_p_dec(int print_length, int max, int i, char c);
 
 #endif

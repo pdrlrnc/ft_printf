@@ -36,7 +36,7 @@ static int	ft_num_len(unsigned int nb)
 
 int	ft_print_unsigned(int nb)
 {
-	unsigned int nb_ul;
+	unsigned int	nb_ul;
 
 	if (nb > 0)
 		nb_ul = nb;
@@ -46,74 +46,58 @@ int	ft_print_unsigned(int nb)
 	return (ft_num_len(nb_ul));
 }
 
-int	ft_validate_flags_uns(t_mdf *modifiers)
+static int	ft_print_uns_pr(unsigned int nb_ul, t_mdf *mdf, int pr_l)
 {
-	if (modifiers->plus || modifiers->space || modifiers->hashtag)
-		modifiers->valid = 0;
-	if (modifiers->dot && modifiers->zero)
-		modifiers->zero = 0;
-	return (modifiers->valid);
+	pr_l += ft_add_p_u(ft_num_len(nb_ul), mdf->precision, '0');
+	pr_l += ft_print_unsigned(nb_ul);
+	return (pr_l);
 }
 
-int	ft_print_uns_mod(int nb, t_mdf *modifiers)
+int	ft_print_uns_mod(int nb, t_mdf *mdf)
 {
-	int	print_length;
+	int				pr_l;
 	unsigned int	nb_ul;
 
-	print_length = 0;
+	pr_l = 0;
 	if (nb > 0)
 		nb_ul = nb;
 	else
 		nb_ul = UINT_MAX + nb + 1;
-	if (!modifiers->width && !modifiers->precision)
+	if (!mdf->width && !mdf->precision)
 		return (ft_print_unsigned(nb_ul));
-	else if (modifiers->width && !modifiers->precision)
+	else if (mdf->width && !mdf->precision)
 	{
-		if (modifiers->zero)
-			print_length += ft_add_padding_uns(ft_num_len(nb_ul), modifiers->width, '0');
-		else if (!modifiers->minus)
-			print_length += ft_add_padding_uns(ft_num_len(nb_ul), modifiers->width, ' ');
-		print_length += ft_print_unsigned(nb_ul);
-		if (modifiers->minus)
-			print_length += ft_add_padding_uns(ft_num_len(nb_ul), modifiers->width, ' ');
+		if (mdf->zero)
+			pr_l += ft_add_p_u(ft_num_len(nb_ul), mdf->width, '0');
+		else if (!mdf->minus)
+			pr_l += ft_add_p_u(ft_num_len(nb_ul), mdf->width, ' ');
+		pr_l += ft_print_unsigned(nb_ul);
+		if (mdf->minus)
+			pr_l += ft_add_p_u(ft_num_len(nb_ul), mdf->width, ' ');
 	}
-	else if (!modifiers->width && modifiers->precision)
-	{
-		print_length += ft_add_padding_uns(ft_num_len(nb_ul), modifiers->precision, '0');
-		print_length += ft_print_unsigned(nb_ul);
-	}
+	else if (!mdf->width && mdf->precision)
+		return (ft_print_uns_pr(nb_ul, mdf, pr_l));
 	else
-		return (ft_print_uns_mod_width_and_precision(nb_ul, modifiers));
-	return (print_length);
+		return (ft_print_uns_mod_width_and_precision(nb_ul, mdf));
+	return (pr_l);
 }
 
-int	ft_print_uns_mod_width_and_precision(unsigned int nb_ul, t_mdf *modifiers)
+int	ft_print_uns_mod_width_and_precision(unsigned int nb_ul, t_mdf *mdf)
 {
-	int	print_length;
+	int	pr_l;
 	int	num_len;
 
-	print_length = 0;
+	pr_l = 0;
 	num_len = ft_num_len(nb_ul);
-	if (!modifiers->minus && modifiers->precision >= num_len)
-		print_length += ft_add_padding_uns(modifiers->precision, modifiers->width, ' ');
-	if (!modifiers->minus && modifiers->precision < num_len)
-		print_length += ft_add_padding_uns(modifiers->precision, modifiers->width, ' ');
-	print_length += ft_add_padding_uns(modifiers->precision, modifiers->width, '0');
-	print_length += ft_print_unsigned(nb_ul);
-	if (modifiers->minus && modifiers->precision >= num_len)
-		print_length += ft_add_padding_uns(modifiers->precision, modifiers->width, ' ');
-	if (modifiers->minus && modifiers->precision < num_len)
-		print_length += ft_add_padding_uns(modifiers->precision, modifiers->width, ' ');
-	return (print_length);
+	if (!mdf->minus && mdf->precision >= num_len)
+		pr_l += ft_add_p_u(mdf->precision, mdf->width, ' ');
+	if (!mdf->minus && mdf->precision < num_len)
+		pr_l += ft_add_p_u(mdf->precision, mdf->width, ' ');
+	pr_l += ft_add_p_u(mdf->precision, mdf->width, '0');
+	pr_l += ft_print_unsigned(nb_ul);
+	if (mdf->minus && mdf->precision >= num_len)
+		pr_l += ft_add_p_u(mdf->precision, mdf->width, ' ');
+	if (mdf->minus && mdf->precision < num_len)
+		pr_l += ft_add_p_u(mdf->precision, mdf->width, ' ');
+	return (pr_l);
 }
-
-int	ft_add_padding_uns(int i, int max, char c)
-{
-	int	print_length;
-
-	print_length = 0;
-	while (i++ < max)
-		print_length += ft_print_char(c);
-	return (print_length);
-}
-

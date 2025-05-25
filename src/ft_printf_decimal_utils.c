@@ -40,7 +40,7 @@ int	ft_handle_negative(int *nb, int *num_size)
 	return (print_length);
 }
 
-int	ft_print_padding_dec(int print_length, int max, int i, char c)
+int	ft_print_p_dec(int print_length, int max, int i, char c)
 {
 	while (i < max)
 	{
@@ -48,4 +48,35 @@ int	ft_print_padding_dec(int print_length, int max, int i, char c)
 		i++;
 	}
 	return (print_length);
+}
+
+int	ft_validate_flags_dec(t_mdf *modifiers)
+{
+	if (modifiers->zero && modifiers->minus)
+		modifiers->valid = 0;
+	if (modifiers->plus && modifiers->space)
+		modifiers->valid = 0;
+	if (modifiers->hashtag)
+		modifiers->valid = 0;
+	return (modifiers->valid);
+}
+
+int	ft_num_size_nb(long nb)
+{
+	int	size;
+
+	if (nb == 0)
+		return (1);
+	size = 0;
+	if (nb < 0)
+	{
+		size++;
+		nb = -nb;
+	}
+	while (nb != 0)
+	{
+		size++;
+		nb /= 10;
+	}
+	return (size);
 }

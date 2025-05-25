@@ -29,6 +29,7 @@ int	ft_print_ptr(void *ptr)
 	nbr_size = ft_putnbr_base_fd(ptr_address, "0123456789abcdef", 1);
 	return (nbr_size + 2);
 }
+
 static int	ft_ptr_address_len(unsigned long ptr)
 {
 	int	len;
@@ -44,8 +45,9 @@ static int	ft_ptr_address_len(unsigned long ptr)
 
 int	ft_validate_flags_ptr(t_mdf *modifiers)
 {
-	if (modifiers->zero || modifiers->space || modifiers->plus 
-			|| modifiers->dot || modifiers->precision)
+	if (modifiers->zero || modifiers->space || modifiers->plus)
+		modifiers->valid = 0;
+	if (modifiers->dot || modifiers->precision)
 		modifiers->valid = 0;
 	return (modifiers->valid);
 }
@@ -74,4 +76,3 @@ int	ft_print_ptr_mod(void *ptr, t_mdf *modifiers)
 	}
 	return (print_length);
 }
-

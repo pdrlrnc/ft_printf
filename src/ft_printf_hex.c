@@ -35,7 +35,7 @@ int	ft_validate_flags_hex(t_mdf *modifiers)
 
 int	ft_print_hex_mod(int nb, char ccase, t_mdf *modifiers)
 {
-	int	print_length;
+	int		print_length;
 	char	*base;
 
 	if (ccase == 'u')
