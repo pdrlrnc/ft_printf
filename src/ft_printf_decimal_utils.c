@@ -40,8 +40,11 @@ int	ft_handle_negative(int *nb, int *num_size)
 	return (print_length);
 }
 
-int	ft_print_p_dec(int print_length, int max, int i, char c)
+int	ft_print_p_dec(int max, int i, char c)
 {
+	int	print_length;
+
+	print_length = 0;
 	while (i < max)
 	{
 		print_length += ft_print_char(c);

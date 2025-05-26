@@ -68,6 +68,6 @@ int		ft_validate_flags_uns(t_mdf *modifiers);
 int		ft_print_uns_mod(int nb, t_mdf *modifiers);
 int		ft_print_uns_mod_width_pr(unsigned int nb_ul, t_mdf *modifiers);
 int		ft_add_p_u(int i, int max, char c);
-int		ft_print_p_dec(int print_length, int max, int i, char c);
+int		ft_print_p_dec(int max, int i, char c);
 
 #endif

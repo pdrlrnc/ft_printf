@@ -32,7 +32,7 @@ OBJ			= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 SRC			= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 CC			= cc
 RM			= rm -rf
-CFLAGS			= -g -Wall -Wextra -Werror -I$(INCLUDES)
+CFLAGS			= -Wall -Wextra -Werror -I$(INCLUDES)
 
 OBJF			= .cache_exists
 

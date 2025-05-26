@@ -24,14 +24,14 @@ static int	ft_handle_width_no_minus(int nb, t_mdf *mdf, int num_size)
 			num_size++;
 		prt_len += ft_handle_sign_dec(nb, mdf);
 		prt_len += ft_handle_negative(&nb, NULL);
-		prt_len += ft_print_p_dec(prt_len, mdf->width, num_size, '0');
+		prt_len += ft_print_p_dec(mdf->width, num_size, '0');
 		prt_len += ft_print_dec(nb);
 	}
 	else
 	{
 		if ((mdf->plus || mdf->space) && nb > 0)
 			num_size++;
-		prt_len = ft_print_p_dec(prt_len, mdf->width, num_size, ' ');
+		prt_len = ft_print_p_dec(mdf->width, num_size, ' ');
 		prt_len += ft_handle_sign_dec(nb, mdf);
 		prt_len += ft_print_dec(nb);
 	}
@@ -51,7 +51,7 @@ static int	ft_handle_width_only_dec(int nb, t_mdf *mdf)
 	{
 		prt_len += ft_handle_sign_dec(nb, mdf);
 		prt_len += ft_print_dec(nb);
-		prt_len = ft_print_p_dec(prt_len, prt_len, mdf->width, ' ');
+		prt_len += ft_print_p_dec(prt_len, mdf->width, ' ');
 	}
 	else
 		return (ft_handle_width_no_minus(nb, mdf, num_size));
@@ -61,13 +61,13 @@ static int	ft_handle_width_only_dec(int nb, t_mdf *mdf)
 static int	ft_precision_no_minus(int nb, int prt_len, t_mdf *mdf, int num_size)
 {
 	if ((mdf->plus && nb > 0) || nb < 0)
-		prt_len += ft_print_p_dec(prt_len, mdf->width, mdf->precision + 1, ' ');
+		prt_len += ft_print_p_dec(mdf->width, mdf->precision + 1, ' ');
 	else
-		prt_len += ft_print_p_dec(prt_len, mdf->width, mdf->precision, ' ');
+		prt_len += ft_print_p_dec(mdf->width, mdf->precision, ' ');
 	if ((mdf->plus && nb > 0))
 		prt_len += ft_print_char('+');
 	prt_len += ft_handle_negative(&nb, &num_size);
-	prt_len += ft_print_p_dec(prt_len, mdf->precision, num_size, '0');
+	prt_len += ft_print_p_dec(mdf->precision, num_size, '0');
 	prt_len += ft_print_dec(nb);
 	return (prt_len);
 }
@@ -83,16 +83,16 @@ static int	ft_handle_precision(int nb, t_mdf *mdf)
 	{
 		prt_len += ft_handle_sign_dec(nb, mdf);
 		prt_len += ft_handle_negative(&nb, &num_size);
-		prt_len += ft_print_p_dec(prt_len, mdf->precision, num_size, '0');
+		prt_len += ft_print_p_dec(mdf->precision, num_size, '0');
 		prt_len += ft_print_dec(nb);
 	}
 	else if (mdf->minus)
 	{
 		prt_len += ft_handle_sign_dec(nb, mdf);
 		prt_len += ft_handle_negative(&nb, &num_size);
-		prt_len += ft_print_p_dec(prt_len, mdf->precision, num_size, '0');
+		prt_len += ft_print_p_dec(mdf->precision, num_size, '0');
 		prt_len += ft_print_dec(nb);
-		prt_len += ft_print_p_dec(prt_len, mdf->width - 1, prt_len, ' ');
+		prt_len += ft_print_p_dec(mdf->width, prt_len, ' ');
 	}
 	else
 		return (ft_precision_no_minus(nb, prt_len, mdf, num_size));
