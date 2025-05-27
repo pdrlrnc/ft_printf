@@ -520,7 +520,6 @@ void		*ptr;
 	assert(his_ret == mine_ret);
 	printf("\n\n");
 
-	ft_printf("%d d%", 42);  
-//	printf("%d d%", 42);
+	ft_printf("|%-5d|", 42);  
 	return (0);
 }
