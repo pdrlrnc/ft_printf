@@ -521,6 +521,6 @@ void		*ptr;
 	printf("\n\n");
 
 	ft_printf("%d d%", 42);  
-	printf("%d d%", 42);
+//	printf("%d d%", 42);
 	return (0);
 }

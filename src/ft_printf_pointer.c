@@ -15,8 +15,8 @@
 
 int	ft_print_ptr(void *ptr)
 {
-	unsigned long	ptr_address;
-	int				nbr_size;
+	unsigned long long	ptr_address;
+	int					nbr_size;
 
 	nbr_size = 0;
 	if (!ptr)
@@ -24,13 +24,13 @@ int	ft_print_ptr(void *ptr)
 		ft_putstr_fd("(nil)", 1);
 		return (5);
 	}
-	ptr_address = (unsigned long) ptr;
+	ptr_address = (unsigned long long) ptr;
 	ft_putstr_fd("0x", 1);
 	nbr_size = ft_putnbr_base_fd(ptr_address, "0123456789abcdef", 1);
 	return (nbr_size + 2);
 }
 
-static int	ft_ptr_address_len(unsigned long ptr)
+static int	ft_ptr_address_len(unsigned long long ptr)
 {
 	int	len;
 
@@ -58,7 +58,7 @@ int	ft_print_ptr_mod(void *ptr, t_mdf *modifiers)
 	int				print_length;
 
 	print_length = 0;
-	ptr_address = (unsigned long) ptr;
+	ptr_address = (unsigned long long) ptr;
 	print_length += ft_ptr_address_len(ptr_address) + 2;
 	if (modifiers->width <= print_length)
 		return (ft_print_ptr(ptr));

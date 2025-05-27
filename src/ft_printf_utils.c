@@ -31,7 +31,7 @@ int	ft_print_arguments(va_list args, char *str, int *i)
 		return (ft_print_hex(va_arg(args, int), 'u'));
 	else if (*(str + *i) == 'u')
 		return (ft_print_unsigned(va_arg(args, int)));
-	else if (*(str + *i) == '%' || *(str + *i) == 'E')
+	else if (*(str + *i) == '%')
 		return (ft_print_char('%'));
 	else
 		ft_validate_mdf(str, i, &modifiers);

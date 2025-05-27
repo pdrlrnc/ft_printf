@@ -31,7 +31,7 @@ int	ft_printf(const char *str, ...)
 			if (*(str + i))
 				print_length += ft_print_arguments(args, (char *) str, &i);
 			else
-				print_length += ft_print_arguments(NULL, "E", NULL);
+				print_length += ft_print_char('%');
 		}
 		else
 			print_length += ft_print_char(*(str + i));
