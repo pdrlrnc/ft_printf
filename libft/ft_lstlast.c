@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pedde-so <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:20:37 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/04/16 12:01:59 by pedde-so         ###   ########.fr       */
+/*   Updated: 2025/05/27 22:39:06 by pedde-so              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 t_list	*ft_lstlast(t_list *lst)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pedde-so <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 15:19:17 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/04/15 19:00:49 by pedde-so         ###   ########.fr       */
+/*   Updated: 2025/05/27 22:39:06 by pedde-so              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 #include <stdio.h>
 
 /*prototypes*/

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_decimal_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pedde-so <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 12:18:29 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/05/25 12:18:32 by pedde-so         ###   ########.fr       */
+/*   Updated: 2025/05/27 22:39:06 by pedde-so              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "libft.h"
+#include "../include/printf.h"
+#include "../include/libft.h"
 
 int	ft_handle_sign_dec(int nb, t_mdf *modifiers)
 {

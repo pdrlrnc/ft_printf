@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pedde-so <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 12:12:17 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/05/15 15:14:34 by pedde-so         ###   ########.fr       */
+/*   Updated: 2025/05/27 22:38:50 by pedde-so              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "../include/printf.h"
 
 int	ft_printf(const char *str, ...)
 {

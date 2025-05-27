@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_decimal_main.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pedde-so <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 14:23:26 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/05/25 14:23:45 by pedde-so         ###   ########.fr       */
+/*   Updated: 2025/05/27 22:39:38 by pedde-so              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "libft.h"
+#include "../include/printf.h"
+#include "../include/libft.h"
 
 int	ft_print_dec(int nb)
 {

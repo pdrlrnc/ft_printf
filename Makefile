@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: pedde-so <marvin@42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/11 15:46:51 by pedde-so          #+#    #+#              #
-#    Updated: 2025/05/25 14:25:14 by pedde-so         ###   ########.fr        #
+#    Updated: 2025/05/27 22:42:48 by pedde-so              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ re:				fclean all
 				@echo "$(WHITE)Cleaned and rebuilt everything. Good job!$(DEF_COLOUR)"
 
 main:				re	
-				@$(CC) $(CFLAGS) ./main/main.c -L. -lftprintf -o $(MAIN)
+				@cc ./main/main.c -L. -lftprintf -o $(MAIN)
 				@echo "$(MAGENTA)Main compiled. Get ready GDB!$(DEF_COLOUR)"
 
 .PHONY:			all clean fclean re main
