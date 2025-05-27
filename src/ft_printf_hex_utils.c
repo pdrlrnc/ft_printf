@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_hex_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: Mal <malory@onenetbeyond.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 15:04:49 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/05/25 15:04:51 by pedde-so         ###   ########.fr       */
+/*   Updated: 2025/05/27 22:39:06 by Mal              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "libft.h"
+#include "../include/printf.h"
+#include "../include/libft.h"
 
 int	ft_pr_hex_wdh_pr(int nb, char ccase, t_mdf *mdf, int num_len)
 {

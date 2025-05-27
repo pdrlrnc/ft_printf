@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: Mal <malory@onenetbeyond.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 18:55:02 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/04/27 14:46:58 by pedde-so         ###   ########.fr       */
+/*   Updated: 2025/05/27 22:39:06 by Mal              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "libft.h"
+#include "../include/libft.h"
 
 /*prototypes*/
 static int	ft_count_words(char const *s, char c);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: Mal <malory@onenetbeyond.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:12:06 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/05/20 18:12:07 by pedde-so         ###   ########.fr       */
+/*   Updated: 2025/05/27 22:38:50 by Mal              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "../include/printf.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>

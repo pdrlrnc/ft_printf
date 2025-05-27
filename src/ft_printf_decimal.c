@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_decimal.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: Mal <malory@onenetbeyond.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 16:37:38 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/05/15 16:51:32 by pedde-so         ###   ########.fr       */
+/*   Updated: 2025/05/27 22:40:04 by Mal              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "libft.h"
+#include "../include/printf.h"
+#include "../include/libft.h"
 
 static int	ft_handle_width_no_minus(int nb, t_mdf *mdf, int num_size)
 {
@@ -101,12 +101,10 @@ static int	ft_handle_precision(int nb, t_mdf *mdf)
 
 int	ft_print_dec_mod(int nb, t_mdf *mdf)
 {
-	int	num_size;
 	int	prt_len;
 
 	if (!ft_validate_flags_dec(mdf))
 		return (ft_use_modifiers(NULL, mdf));
-	num_size = ft_num_size_nb(nb);
 	prt_len = 0;
 	if (!mdf->width && !mdf->precision)
 		return (ft_handle_plain_dec(nb, mdf));

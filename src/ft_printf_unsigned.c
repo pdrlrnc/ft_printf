@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_unsigned.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedde-so <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: Mal <malory@onenetbeyond.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 14:10:35 by pedde-so          #+#    #+#             */
-/*   Updated: 2025/05/19 14:10:38 by pedde-so         ###   ########.fr       */
+/*   Updated: 2025/05/27 22:40:12 by Mal              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "printf.h"
+#include "../include/libft.h"
+#include "../include/printf.h"
 #include <stdio.h>
 
 static int	ft_num_len(unsigned int nb)
@@ -21,11 +21,6 @@ static int	ft_num_len(unsigned int nb)
 	if (nb == 0)
 		return (1);
 	size = 0;
-	if (nb < 0)
-	{
-		size++;
-		nb = -nb;
-	}
 	while (nb != 0)
 	{
 		size++;
