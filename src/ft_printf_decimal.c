@@ -51,7 +51,7 @@ static int	ft_handle_width_only_dec(int nb, t_mdf *mdf)
 	{
 		prt_len += ft_handle_sign_dec(nb, mdf);
 		prt_len += ft_print_dec(nb);
-		prt_len += ft_print_p_dec(mdf->width, prt_len, ' ');
+		prt_len += ft_print_p_dec(prt_len, mdf->width, ' ');
 	}
 	else
 		return (ft_handle_width_no_minus(nb, mdf, num_size));

@@ -13,13 +13,15 @@
 #include "printf.h"
 #include "libft.h"
 
-int	ft_print_hex(int nb, char ccase)
+int	ft_print_hex(unsigned long long nb, char ccase)
 {
-	nb = (unsigned int) nb;
+	unsigned long long	nb_ull;
+
+	nb_ull = (unsigned long long) nb;
 	if (ccase == 'l')
-		return (ft_putnbr_base_fd(nb, "0123456789abcdef", 1));
+		return (ft_putnbr_base_fd(nb_ull, "0123456789abcdef", 1));
 	else
-		return (ft_putnbr_base_fd(nb, "0123456789ABCDEF", 1));
+		return (ft_putnbr_base_fd(nb_ull, "0123456789ABCDEF", 1));
 }
 
 int	ft_validate_flags_hex(t_mdf *mdf)
@@ -33,11 +35,13 @@ int	ft_validate_flags_hex(t_mdf *mdf)
 	return (mdf->valid);
 }
 
-int	ft_print_hex_mod(int nb, char ccase, t_mdf *mdf)
+int	ft_print_hex_mod(unsigned long long nb, char ccase, t_mdf *mdf)
 {
 	int		p_l;
 	char	*base;
-
+	
+	if (mdf->dot && !mdf->precision && mdf->hashtag && !nb)
+		return (0);
 	if (ccase == 'u')
 		base = "0123456789abcdef";
 	else
@@ -56,7 +60,7 @@ int	ft_print_hex_mod(int nb, char ccase, t_mdf *mdf)
 	return (p_l);
 }
 
-int	ft_pr_hex_wdh(int nb, char ccase, t_mdf *mdf, int num_len)
+int	ft_pr_hex_wdh(unsigned long long nb, char ccase, t_mdf *mdf, int num_len)
 {
 	int	p_l;
 
@@ -82,7 +86,7 @@ int	ft_pr_hex_wdh(int nb, char ccase, t_mdf *mdf, int num_len)
 	return (p_l);
 }
 
-int	ft_pr_hex_pr(int nb, char ccase, t_mdf *mdf, int num_len)
+int	ft_pr_hex_pr(unsigned long long nb, char ccase, t_mdf *mdf, int num_len)
 {
 	int	p_l;
 

@@ -14,6 +14,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <limits.h>
+
 
 int main(void)
 {
@@ -519,7 +521,276 @@ void		*ptr;
 	mine_ret = ft_printf("80-mine: |%s|%s|%s|\n", "one", "two", "three");
 	assert(his_ret == mine_ret);
 	printf("\n\n");
+	
+	printf("test 81: %%x with 42\n");
+	his_ret = printf("81-his:  |%x|\n", 42);
+	mine_ret = ft_printf("81-mine: |%x|\n", 42);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
 
-	ft_printf("|%-5d|", 42);  
+	printf("test 82: %%X with 42\n");
+	his_ret = printf("82-his:  |%X|\n", 42);
+	mine_ret = ft_printf("82-mine: |%X|\n", 42);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 83: %%#x with 42\n");
+	his_ret = printf("83-his:  |%#x|\n", 42);
+	mine_ret = ft_printf("83-mine: |%#x|\n", 42);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 84: %%#X with 42\n");
+	his_ret = printf("84-his:  |%#X|\n", 42);
+	mine_ret = ft_printf("84-mine: |%#X|\n", 42);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 85: %%#x with 0\n");
+	his_ret = printf("85-his:  |%#x|\n", 0);
+	mine_ret = ft_printf("85-mine: |%#x|\n", 0);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 86: %%08x with 42\n");
+	his_ret = printf("86-his:  |%08x|\n", 42);
+	mine_ret = ft_printf("86-mine: |%08x|\n", 42);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 87: %%08X with 42\n");
+	his_ret = printf("87-his:  |%08X|\n", 42);
+	mine_ret = ft_printf("87-mine: |%08X|\n", 42);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 88: %%-8x with 42\n");
+	his_ret = printf("88-his:  |%-8x|\n", 42);
+	mine_ret = ft_printf("88-mine: |%-8x|\n", 42);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 89: %%8.4x with 42\n");
+	his_ret = printf("89-his:  |%8.4x|\n", 42);
+	mine_ret = ft_printf("89-mine: |%8.4x|\n", 42);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 90: %%-#10x with 255\n");
+	his_ret = printf("90-his:  |%-#10x|\n", 255);
+	mine_ret = ft_printf("90-mine: |%-#10x|\n", 255);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 91: %%#.10X with 255\n");
+	his_ret = printf("91-his:  |%#.10X|\n", 255);
+	mine_ret = ft_printf("91-mine: |%#.10X|\n", 255);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 92: %%x with INT_MAX\n");
+	his_ret = printf("92-his:  |%x|\n", INT_MAX);
+	mine_ret = ft_printf("92-mine: |%x|\n", INT_MAX);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 93: %%x with UINT_MAX\n");
+	printf("%d\n", UINT_MAX);
+	ft_printf("%d\n", UINT_MAX);
+
+	his_ret = printf("93-his:  |%x|\n", UINT_MAX);
+	mine_ret = ft_printf("93-mine: |%x|\n", UINT_MAX);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 94: %%X with UINT_MAX\n");
+	his_ret = printf("94-his:  |%X|\n", UINT_MAX);
+	mine_ret = ft_printf("94-mine: |%X|\n", UINT_MAX);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 95: %%x with negative (cast to unsigned)\n");
+	his_ret = printf("95-his:  |%x|\n", (unsigned int)-1);
+	mine_ret = ft_printf("95-mine: |%x|\n", (unsigned int)-1);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 96: %%X with multiple args\n");
+	his_ret = printf("96-his:  |%X|%X|%X|\n", 1, 255, 4096);
+	mine_ret = ft_printf("96-mine: |%X|%X|%X|\n", 1, 255, 4096);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 97: %%#08x with 42\n");
+	his_ret = printf("97-his:  |%#08x|\n", 42);
+	mine_ret = ft_printf("97-mine: |%#08x|\n", 42);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 98: %%-#08X with 42\n");
+//	his_ret = printf("98-his:  |%-#08X|\n", 42);
+	mine_ret = ft_printf("98-mine: |%-#08X|\n", 42);
+//	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 99: %%10.0x with 0\n");
+	his_ret = printf("99-his:  |%10.0x|\n", 0);
+	mine_ret = ft_printf("99-mine: |%10.0x|\n", 0);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test 100: %%#.x with 0\n");
+	his_ret = printf("100-his:  |%#.x|\n", 0);
+	mine_ret = ft_printf("100-mine: |%#.x|\n", 0);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+	
+	printf("test x-1: %%x with 0\n");
+	his_ret = printf("x-1-his:  |%x|\n", 0);
+	mine_ret = ft_printf("x-1-mine: |%x|\n", 0);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test x-2: %%x with 1\n");
+	his_ret = printf("x-2-his:  |%x|\n", 1);
+	mine_ret = ft_printf("x-2-mine: |%x|\n", 1);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test x-3: %%x with 10\n");
+	his_ret = printf("x-3-his:  |%x|\n", 10);
+	mine_ret = ft_printf("x-3-mine: |%x|\n", 10);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test x-4: %%x with 255\n");
+	his_ret = printf("x-4-his:  |%x|\n", 255);
+	mine_ret = ft_printf("x-4-mine: |%x|\n", 255);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test x-5: %%x with 4096\n");
+	his_ret = printf("x-5-his:  |%x|\n", 4096);
+	mine_ret = ft_printf("x-5-mine: |%x|\n", 4096);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test x-6: %%x with INT_MAX\n");
+	his_ret = printf("x-6-his:  |%x|\n", INT_MAX);
+	mine_ret = ft_printf("x-6-mine: |%x|\n", INT_MAX);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test x-7: %%x with UINT_MAX\n");
+	his_ret = printf("x-7-his:  |%x|\n", UINT_MAX);
+	mine_ret = ft_printf("x-7-mine: |%x|\n", UINT_MAX);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test x-8: %%x with -1 cast to unsigned\n");
+	his_ret = printf("x-8-his:  |%x|\n", (unsigned int)-1);
+	mine_ret = ft_printf("x-8-mine: |%x|\n", (unsigned int)-1);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test x-9: %%x with 0xDEADBEEF\n");
+	his_ret = printf("x-9-his:  |%x|\n", 0xDEADBEEF);
+	mine_ret = ft_printf("x-9-mine: |%x|\n", 0xDEADBEEF);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test x-10: %%x with 0xBADC0DE\n");
+	his_ret = printf("x-10-his:  |%x|\n", 0xBADC0DE);
+	mine_ret = ft_printf("x-10-mine: |%x|\n", 0xBADC0DE);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test x-11: %%x with powers of 2\n");
+	unsigned int i = 1;
+	for (int test = 11; i > 0 && test < 30; i <<= 1, ++test)
+	{
+		printf("x-%d: %%x with %u\n", test, i);
+		his_ret = printf("x-%d-his:  |%x|\n", test, i);
+		mine_ret = ft_printf("x-%d-mine: |%x|\n", test, i);
+		assert(his_ret == mine_ret);
+		printf("\n\n");
+	}
+
+	// Now same shit but with %X
+
+	printf("test X-1: %%X with 0\n");
+	his_ret = printf("X-1-his:  |%X|\n", 0);
+	mine_ret = ft_printf("X-1-mine: |%X|\n", 0);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test X-2: %%X with 1\n");
+	his_ret = printf("X-2-his:  |%X|\n", 1);
+	mine_ret = ft_printf("X-2-mine: |%X|\n", 1);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test X-3: %%X with 10\n");
+	his_ret = printf("X-3-his:  |%X|\n", 10);
+	mine_ret = ft_printf("X-3-mine: |%X|\n", 10);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test X-4: %%X with 255\n");
+	his_ret = printf("X-4-his:  |%X|\n", 255);
+	mine_ret = ft_printf("X-4-mine: |%X|\n", 255);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test X-5: %%X with 4096\n");
+	his_ret = printf("X-5-his:  |%X|\n", 4096);
+	mine_ret = ft_printf("X-5-mine: |%X|\n", 4096);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test X-6: %%X with INT_MAX\n");
+	his_ret = printf("X-6-his:  |%X|\n", INT_MAX);
+	mine_ret = ft_printf("X-6-mine: |%X|\n", INT_MAX);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test X-7: %%X with UINT_MAX\n");
+	his_ret = printf("X-7-his:  |%X|\n", UINT_MAX);
+	mine_ret = ft_printf("X-7-mine: |%X|\n", UINT_MAX);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test X-8: %%X with -1 cast to unsigned\n");
+	his_ret = printf("X-8-his:  |%X|\n", (unsigned int)-1);
+	mine_ret = ft_printf("X-8-mine: |%X|\n", (unsigned int)-1);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test X-9: %%X with 0xDEADBEEF\n");
+	his_ret = printf("X-9-his:  |%X|\n", 0xDEADBEEF);
+	mine_ret = ft_printf("X-9-mine: |%X|\n", 0xDEADBEEF);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test X-10: %%X with 0xBADC0DE\n");
+	his_ret = printf("X-10-his:  |%X|\n", 0xBADC0DE);
+	mine_ret = ft_printf("X-10-mine: |%X|\n", 0xBADC0DE);
+	assert(his_ret == mine_ret);
+	printf("\n\n");
+
+	printf("test X-11: %%X with powers of 2\n");
+	i = 1;
+	for (int test = 11; i > 0 && test < 30; i <<= 1, ++test)
+	{
+		printf("X-%d: %%X with %u\n", test, i);
+		his_ret = printf("X-%d-his:  |%X|\n", test, i);
+		mine_ret = ft_printf("X-%d-mine: |%X|\n", test, i);
+		assert(his_ret == mine_ret);
+		printf("\n\n");
+	}
+
+	his_ret = printf("%x\n", INT_MIN);
+	mine_ret = printf("%x\n", INT_MIN);
+	assert(his_ret == mine_ret);
 	return (0);
 }

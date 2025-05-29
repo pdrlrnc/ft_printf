@@ -13,7 +13,7 @@
 #include "printf.h"
 #include "libft.h"
 
-int	ft_pr_hex_wdh_pr(int nb, char ccase, t_mdf *mdf, int num_len)
+int	ft_pr_hex_wdh_pr(unsigned long long nb, char ccase, t_mdf *mdf, int num_len)
 {
 	int	p_l;
 

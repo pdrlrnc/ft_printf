@@ -29,7 +29,7 @@ INCLUDES		= ../include
 
 CC				= cc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror -I 
+CFLAGS			= -g -Wall -Wextra -Werror -I 
 
 %.o: %.c
 			@$(CC) $(CFLAGS) $(INCLUDES) -c $(<) -o $(@)

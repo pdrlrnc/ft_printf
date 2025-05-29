@@ -32,7 +32,7 @@ OBJ			= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 SRC			= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 CC			= cc
 RM			= rm -rf
-CFLAGS			= -Wall -Wextra -Werror -I$(INCLUDES)
+CFLAGS			= -g -Wall -Wextra -Werror -I$(INCLUDES)
 
 OBJF			= .cache_exists
 
@@ -59,8 +59,9 @@ clean:
 				@$(RM) $(MAIN)
 				@make clean -s -C $(LIBFT)
 
-fclean:			clean
+fclean:				clean
 				@$(RM) $(NAME)
+				@$(RM) .bonus
 				@make fclean -s -C $(LIBFT)
 				@echo "$(BLUE)Cleaning done! Not a library in sight!$(DEF_COLOUR)"
 
@@ -72,4 +73,7 @@ main:				re
 				@$(CC) $(CFLAGS) ./main/main.c -L. -lftprintf -o $(MAIN)
 				@echo "$(MAGENTA)Main compiled. Get ready GDB!$(DEF_COLOUR)"
 
-.PHONY:			all clean fclean re main
+bonus:				re
+				@touch .bonus
+
+.PHONY:				all clean fclean re main bonus

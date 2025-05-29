@@ -26,9 +26,9 @@ int	ft_print_arguments(va_list args, char *str, int *i)
 	else if (*(str + *i) == 'd' || *(str + *i) == 'i')
 		return (ft_print_dec(va_arg(args, int)));
 	else if (*(str + *i) == 'x')
-		return (ft_print_hex(va_arg(args, int), 'l'));
+		return (ft_print_hex(va_arg(args, unsigned long long), 'l'));
 	else if (*(str + *i) == 'X')
-		return (ft_print_hex(va_arg(args, int), 'u'));
+		return (ft_print_hex(va_arg(args, unsigned long long), 'u'));
 	else if (*(str + *i) == 'u')
 		return (ft_print_unsigned(va_arg(args, int)));
 	else if (*(str + *i) == '%')
