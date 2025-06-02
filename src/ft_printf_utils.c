@@ -26,11 +26,11 @@ int	ft_print_arguments(va_list args, char *str, int *i)
 	else if (*(str + *i) == 'd' || *(str + *i) == 'i')
 		return (ft_print_dec(va_arg(args, int)));
 	else if (*(str + *i) == 'x')
-		return (ft_print_hex(va_arg(args, unsigned long long), 'l'));
+		return (ft_print_hex(va_arg(args, unsigned int), 'l'));
 	else if (*(str + *i) == 'X')
-		return (ft_print_hex(va_arg(args, unsigned long long), 'u'));
+		return (ft_print_hex(va_arg(args, unsigned int), 'u'));
 	else if (*(str + *i) == 'u')
-		return (ft_print_unsigned(va_arg(args, int)));
+		return (ft_print_unsigned(va_arg(args, unsigned int)));
 	else if (*(str + *i) == '%')
 		return (ft_print_char('%'));
 	else
@@ -62,16 +62,16 @@ int	ft_use_modifiers(va_list args, t_mdf *modifiers)
 		return (ft_print_char_mod(va_arg(args, int), modifiers));
 	else if (modifiers->specifier == 's')
 		return (ft_print_str_mod(va_arg(args, char *), modifiers));
-	else if (modifiers->specifier == 'd')
+	else if (modifiers->specifier == 'd' || modifiers->specifier == 'i')
 		return (ft_print_dec_mod(va_arg(args, int), modifiers));
 	else if (modifiers->specifier == 'p')
 		return (ft_print_ptr_mod(va_arg(args, void *), modifiers));
 	else if (modifiers->specifier == 'x')
-		return (ft_print_hex_mod(va_arg(args, int), 'l', modifiers));
+		return (ft_print_hex_mod(va_arg(args, unsigned int), 'l', modifiers));
 	else if (modifiers->specifier == 'X')
-		return (ft_print_hex_mod(va_arg(args, int), 'u', modifiers));
+		return (ft_print_hex_mod(va_arg(args, unsigned int), 'u', modifiers));
 	else if (modifiers->specifier == 'u')
-		return (ft_print_uns_mod(va_arg(args, int), modifiers));
+		return (ft_print_uns_mod(va_arg(args, unsigned int), modifiers));
 	else
 		return (ft_print_char('%'));
 }

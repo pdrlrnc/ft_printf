@@ -39,8 +39,10 @@ int	ft_print_hex_mod(unsigned long long nb, char ccase, t_mdf *mdf)
 {
 	int		p_l;
 	char	*base;
-	
+
 	if (mdf->dot && !mdf->precision && mdf->hashtag && !nb)
+		return (0);
+	if (mdf->dot && !mdf->precision && !mdf->width && !nb)
 		return (0);
 	if (ccase == 'u')
 		base = "0123456789abcdef";

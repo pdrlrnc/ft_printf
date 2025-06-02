@@ -24,7 +24,7 @@ int	ft_handle_plain_dec(int nb, t_mdf *mdf)
 	int	print_length;
 
 	print_length = 0;
-	if (nb <= 0)
+	if (nb < 0)
 		print_length += ft_print_dec(nb);
 	else if (mdf->plus)
 		print_length += (ft_print_char('+') + ft_print_dec(nb));

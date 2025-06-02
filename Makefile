@@ -32,7 +32,7 @@ OBJ			= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 SRC			= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 CC			= cc
 RM			= rm -rf
-CFLAGS			= -g -Wall -Wextra -Werror -I$(INCLUDES)
+CFLAGS			= -Wall -Wextra -Werror -I$(INCLUDES)
 
 OBJF			= .cache_exists
 
@@ -40,7 +40,7 @@ $(OBJF):
 			@mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
-			@$(CC) $(CFLAGS) -c $< -o $@
+			@$(CC) -g $(CFLAGS) -c $< -o $@
 
 
 all:			$(NAME)
@@ -69,11 +69,11 @@ fclean:				clean
 re:				fclean all
 				@echo "$(WHITE)Cleaned and rebuilt everything. Good job!$(DEF_COLOUR)"
 
-main:				re	
-				@$(CC) $(CFLAGS) ./main/main.c -L. -lftprintf -o $(MAIN)
-				@echo "$(MAGENTA)Main compiled. Get ready GDB!$(DEF_COLOUR)"
-
 bonus:				re
 				@touch .bonus
 
-.PHONY:				all clean fclean re main bonus
+main:				re	
+				@$(CC) -g $(CFLAGS) ./main/main.c -L. -lftprintf -o $(MAIN)
+				@echo "$(MAGENTA)Main compiled. Get ready GDB!$(DEF_COLOUR)"
+
+.PHONY:				all clean fclean re main

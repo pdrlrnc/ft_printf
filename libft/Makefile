@@ -29,10 +29,10 @@ INCLUDES		= ../include
 
 CC				= cc
 RM				= rm -f
-CFLAGS			= -g -Wall -Wextra -Werror -I 
+CFLAGS			= -Wall -Wextra -Werror -I 
 
 %.o: %.c
-			@$(CC) $(CFLAGS) $(INCLUDES) -c $(<) -o $(@)
+			@$(CC) -g $(CFLAGS) $(INCLUDES) -c $(<) -o $(@)
 
 NAME			= libft.a
 

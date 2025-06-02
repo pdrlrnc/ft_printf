@@ -51,7 +51,7 @@ static int	ft_handle_width_only_dec(int nb, t_mdf *mdf)
 	{
 		prt_len += ft_handle_sign_dec(nb, mdf);
 		prt_len += ft_print_dec(nb);
-		prt_len += ft_print_p_dec(prt_len, mdf->width, ' ');
+		prt_len += ft_print_p_dec(mdf->width, prt_len, ' ');
 	}
 	else
 		return (ft_handle_width_no_minus(nb, mdf, num_size));
@@ -101,12 +101,12 @@ static int	ft_handle_precision(int nb, t_mdf *mdf)
 
 int	ft_print_dec_mod(int nb, t_mdf *mdf)
 {
-	int	num_size;
 	int	prt_len;
 
+	if (nb == 0 && mdf->dot && !mdf->precision && !mdf->width)
+		return (0);
 	if (!ft_validate_flags_dec(mdf))
 		return (ft_use_modifiers(NULL, mdf));
-	num_size = ft_num_size_nb(nb);
 	prt_len = 0;
 	if (!mdf->width && !mdf->precision)
 		return (ft_handle_plain_dec(nb, mdf));
