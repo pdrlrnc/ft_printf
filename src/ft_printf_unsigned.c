@@ -21,11 +21,6 @@ static int	ft_num_len(unsigned int nb)
 	if (nb == 0)
 		return (1);
 	size = 0;
-	if (nb < 0)
-	{
-		size++;
-		nb = -nb;
-	}
 	while (nb != 0)
 	{
 		size++;

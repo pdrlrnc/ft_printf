@@ -9,71 +9,57 @@
 #    Updated: 2025/05/25 14:25:14 by pedde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+SRC_FILES = ft_printf ft_printf_char ft_printf_string ft_printf_utils \
+			ft_printf_pointer ft_printf_decimal ft_printf_hex \
+			ft_printf_unsigned ft_validate_modifiers ft_printf_decimal_utils \
+			ft_printf_decimal_main ft_printf_unsigned_utils ft_printf_hex_utils
 
-SRC_FILES		= ft_printf ft_printf_char ft_printf_string ft_printf_utils \
-				ft_printf_pointer ft_printf_decimal ft_printf_hex \
-				ft_printf_unsigned ft_validate_modifiers ft_printf_decimal_utils \
-				ft_printf_decimal_main ft_printf_unsigned_utils ft_printf_hex_utils
-LIBFT			= libft
-OBJ_DIR			= obj/
-INCLUDES		= ./include
-SRC_DIR			= src/
-AR			= ar rcs
-NAME			= libftprintf.a
-MAIN			= main.out
+SRC_DIR   = src/
+OBJ_DIR   = obj/
+INCLUDES  = include
+LIBFT_DIR = libft
+LIBFT_URL = https://github.com/pdrlrnc/libft.git
 
-DEF_COLOUR = \033[0;39m
-GREEN = \033[0;92m
-BLUE = \033[0;94m
-WHITE = \033[0;97m
-MAGENTA = \033[0;95m
+NAME = libftprintf.a
 
-OBJ			= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
-SRC			= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
-CC			= cc
-RM			= rm -rf
-CFLAGS			= -Wall -Wextra -Werror -I$(INCLUDES)
+CC     = cc
+AR     = ar rcs
+RM     = rm -rf
+CFLAGS = -Wall -Wextra -Werror -I$(INCLUDES)
 
-OBJF			= .cache_exists
+OBJ = $(addprefix $(OBJ_DIR)/,$(addsuffix .o,$(SRC_FILES)))
+SRC = $(addprefix $(SRC_DIR)/,$(addsuffix .c,$(SRC_FILES)))
 
-$(OBJF):
-			@mkdir -p $(OBJ_DIR)
+all: $(NAME)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
-			@$(CC) -g $(CFLAGS) -c $< -o $@
+$(LIBFT_DIR):
+	@git clone --depth 1 $(LIBFT_URL) $(LIBFT_DIR)
 
+$(LIBFT_DIR)/libft.a: | $(LIBFT_DIR)
+	@$(MAKE) -s -C $(LIBFT_DIR)
 
-all:			$(NAME)
+$(INCLUDES)/libft.h: $(LIBFT_DIR)/libft.a
+	@mkdir -p $(INCLUDES)
+	@cp $(LIBFT_DIR)/libft.h $(INCLUDES)/libft.h 2>/dev/null || \
+	cp $(LIBFT_DIR)/include/libft.h $(INCLUDES)/libft.h 2>/dev/null || \
+	cp $(LIBFT_DIR)/includes/libft.h $(INCLUDES)/libft.h
 
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDES)/libft.h
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) -g $(CFLAGS) -c $< -o $@
 
-$(NAME):		$(OBJ)
-				@make -s -C $(LIBFT)
-				@cp ./libft/libft.a .
-				@mv libft.a $(NAME)
-				@$(AR) $(NAME) $(OBJ)
-				@echo "$(GREEN)Congratulations! You've compiled ft_printf!$(DEF_COLOUR)"
+$(NAME): $(OBJ) $(LIBFT_DIR)/libft.a
+	@cp $(LIBFT_DIR)/libft.a .
+	@mv libft.a $(NAME)
+	@$(AR) $(NAME) $(OBJ)
 
 clean:
-				@$(RM) $(OBJ)
-				@$(RM) $(OBJ_DIR)
-				@$(RM) $(MAIN)
-				@make clean -s -C $(LIBFT)
+	@$(RM) $(OBJ_DIR)
 
-fclean:				clean
-				@$(RM) $(NAME)
-				@$(RM) .bonus
-				@make fclean -s -C $(LIBFT)
-				@echo "$(BLUE)Cleaning done! Not a library in sight!$(DEF_COLOUR)"
+fclean: clean
+	@$(RM) $(NAME) $(INCLUDES)/libft.h
+	@$(RM) -r $(LIBFT_DIR)
 
+re: fclean all
 
-re:				fclean all
-				@echo "$(WHITE)Cleaned and rebuilt everything. Good job!$(DEF_COLOUR)"
-
-bonus:				re
-				@touch .bonus
-
-main:				re	
-				@$(CC) -g $(CFLAGS) ./main/main.c -L. -lftprintf -o $(MAIN)
-				@echo "$(MAGENTA)Main compiled. Get ready GDB!$(DEF_COLOUR)"
-
-.PHONY:				all clean fclean re main
+.PHONY: all clean fclean re
