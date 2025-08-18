@@ -37,6 +37,7 @@ $(LIBFT_DIR):
 
 $(LIBFT_DIR)/libft.a: | $(LIBFT_DIR)
 	@$(MAKE) -s -C $(LIBFT_DIR)
+	@$(MAKE) bonus -s -C $(LIBFT_DIR)
 
 $(INCLUDES)/libft.h: $(LIBFT_DIR)/libft.a
 	@mkdir -p $(INCLUDES)
