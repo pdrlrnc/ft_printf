@@ -22,7 +22,7 @@ LIBFT_URL = https://github.com/pdrlrnc/libft.git
 
 NAME = libftprintf.a
 
-CC     = cc
+CC     = cc -g 
 AR     = ar rcs
 RM     = rm -rf
 CFLAGS = -Wall -Wextra -Werror -I$(INCLUDES)
