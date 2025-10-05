@@ -33,7 +33,7 @@ SRC = $(addprefix $(SRC_DIR)/,$(addsuffix .c,$(SRC_FILES)))
 all: $(NAME)
 
 $(LIBFT_DIR):
-	@git clone --depth 1 $(LIBFT_URL) $(LIBFT_DIR)
+	@git clone --quiet --depth 1 $(LIBFT_URL) $(LIBFT_DIR)
 
 $(LIBFT_DIR)/libft.a: | $(LIBFT_DIR)
 	@$(MAKE) -s -C $(LIBFT_DIR)
